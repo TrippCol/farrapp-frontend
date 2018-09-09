@@ -51,6 +51,6 @@ You will need to install:
   yarn build
   ```
 
-##Contributors
+## Contributors
 
 - [Contributors](https://github.com/BowLATAM/farrapp-frontend/graphs/contributors)

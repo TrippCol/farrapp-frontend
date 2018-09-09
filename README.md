@@ -2,26 +2,31 @@
 
 Front end for farrapp using React Framework
 
-##State
+## State
+
 [![CircleCI](https://circleci.com/gh/BowLATAM/farrapp-frontend.svg?style=svg)](https://circleci.com/gh/BowLATAM/farrapp-frontend)
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/7a8077e7743de3c749d5/maintainability)](https://codeclimate.com/github/BowLATAM/farrapp-frontend/maintainability)
+
 [![Heroku](https://wmpics.pics/di-NNAT.png)](https://farrapp-frontend.herokuapp.com/)
 
-##Get Started
+## Get Started
+
 To get started consider:
 
-###Requirements
+### Requirements
+
 You will need to install:
 
-####NodeJs
+#### NodeJs
 
 - [NodeJs](https://nodejs.org/es/download/)
 
-####Yarn
+#### Yarn
 
 - [Yarn](https://yarnpkg.com/en/docs/install)
 
-###Set up project
+### Set up project
 
 - install dependencies:
 

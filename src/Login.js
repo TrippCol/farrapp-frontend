@@ -8,9 +8,22 @@ import InputLabel from '@material-ui/core/InputLabel';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Grid from '@material-ui/core/Grid';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
 import './Login.css';
 
 export class Login extends React.Component {
+    state = { showPassword: false, password: '' };
+
+    handleClickShowPassword = () => {
+        this.setState(state => ({ showPassword: !state.showPassword }));
+    };
+
     render() {
         return (
             <React.Fragment>
@@ -20,28 +33,59 @@ export class Login extends React.Component {
                         <Avatar className="avatar">
                             <LockIcon />
                         </Avatar>
-                        <Typography variant="headline">Sign in</Typography>
+                        <Typography variant="headline">Log in</Typography>
                         <form className="form">
+
+
                             <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="email">Email Address</InputLabel>
+                                <InputLabel htmlFor="username">Username</InputLabel>
                                 <Input
-                                    id="email"
-                                    name="email"
-                                    autoComplete="email"
+                                    id="username"
+                                    name="username"
+                                    autoComplete="username"
                                     autoFocus
-                                    onChange = {this.props.handleEmailChange}
+                                    onChange={this.props.handleEmailChange}
+                                    startAdornment= {
+                                        <InputAdornment position="start">
+                                            <AccountCircle />
+                                        </InputAdornment>
+                                    }
                                 />
                             </FormControl>
+
+
+
                             <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="password">Password</InputLabel>
+                                <InputLabel htmlFor="adornment-password">Password</InputLabel>
                                 <Input
-                                    name="password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                    onChange = {this.props.handlePasswordChange}
+                                    id="adornment-password"
+                                    type={this.state.showPassword ? 'text' : 'password'}
+                                    startAdornment= {
+                                        <InputAdornment position="start">
+                                            <LockIcon />
+                                        </InputAdornment>
+                                    }
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="Toggle password visibility"
+                                                onClick={this.handleClickShowPassword}
+                                                onMouseDown={this.handleMouseDownPassword}
+                                            >
+                                                {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
                                 />
                             </FormControl>
+
+
+
+
+
+
+
+
                             <Button
                                 type="submit"
                                 fullWidth
@@ -50,7 +94,7 @@ export class Login extends React.Component {
                                 className="submit"
                                 onClick={this.props.handleLogin}
                             >
-                                Sign in
+                                Log in
                             </Button>
                         </form>
                     </Paper>

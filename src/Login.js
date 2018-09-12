@@ -80,12 +80,6 @@ export class Login extends React.Component {
                             </FormControl>
 
 
-
-
-
-
-
-
                             <Button
                                 type="submit"
                                 fullWidth

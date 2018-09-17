@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import farrappLogo from "./farrappLogo.svg";
 import "./App.css";
-import {Login} from "./Login";
+import {SignUp} from "./signup/SignUp";
 
 class App extends Component {
   render() {
@@ -11,7 +11,7 @@ class App extends Component {
           <img src={farrappLogo} className="App-logo" alt="logo" />
           <h1 className="App-title">Farrapp</h1>
         </header>
-        <Login></Login>
+        <SignUp></SignUp>
       </div>
     );
   }

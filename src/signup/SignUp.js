@@ -19,7 +19,7 @@ import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
 import './SignUp.css';
 
 export class SignUp extends React.Component {
-    state = { showPasswordOne: false, passwordOne: '', showPasswordTwo: false, passwordTwo: '' };
+    state = { showPasswordOne: false, passwordOne: '', showPasswordTwo: false, passwordTwo: '' , name: '', lastName: ''};
 
     handleClickShowPasswordOne = () => {
         this.setState(state => ({ showPasswordOne: !state.showPasswordOne }));
@@ -30,9 +30,45 @@ export class SignUp extends React.Component {
     };
 
     handleLogin = () => {
+        console.log(this.state);
         if(this.state.passwordOne !== this.state.passwordTwo){
             alert("Both of the passwords should be equal");
         }
+    };
+
+    handleNameChange = event => {
+        localStorage.setItem("name", event.target.value);
+        /*this.setState({
+            name: event.target.value
+        });*/
+    };
+
+    handleLastNameChange = event => {
+        localStorage.setItem("lastName", event.target.value);
+        this.setState({
+            lastName: event.target.value
+        });
+    };
+
+    handleEmailChange = event => {
+        localStorage.setItem("email", event.target.value);
+        this.setState({
+            email: event.target.value
+        });
+    };
+
+    handlePasswordOneChange = event => {
+        localStorage.setItem("passwordOne", event.target.value);
+        this.setState({
+            passwordOne: event.target.value
+        });
+    };
+
+    handlePasswordTwoChange = event => {
+        localStorage.setItem("passwordTwo", event.target.value);
+        this.setState({
+            passwordTwo: event.target.value
+        });
     };
 
     render() {
@@ -51,7 +87,7 @@ export class SignUp extends React.Component {
                                     name="name"
                                     autoComplete="name"
                                     autoFocus
-                                    onChange={this.props.handleNameChange}
+                                    onChange={this.handleNameChange}
                                     
                                 />
                             </FormControl>
@@ -62,23 +98,8 @@ export class SignUp extends React.Component {
                                     id="lastName"
                                     name="lastName"
                                     autoComplete="lastName"
-                                    onChange={this.props.handleLastNameChange}
+                                    onChange={this.handleLastNameChange}
                                     
-                                />
-                            </FormControl>
-
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="username">Username</InputLabel>
-                                <Input
-                                    id="username"
-                                    name="username"
-                                    autoComplete="username"
-                                    onChange={this.props.handleUsernameChange}
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <AccountCircleOutlined />
-                                        </InputAdornment>
-                                    }
                                 />
                             </FormControl>
 
@@ -89,7 +110,7 @@ export class SignUp extends React.Component {
                                     id="email"
                                     name="email"
                                     autoComplete="email"
-                                    onChange={this.props.handleEmailChange}
+                                    onChange={this.handleEmailChange}
                                     startAdornment={
                                         <InputAdornment position="start">
                                             <EmailIcon />
@@ -110,6 +131,8 @@ export class SignUp extends React.Component {
                                             <LockIcon />
                                         </InputAdornment>
                                     }
+                                    
+                                    onChange={this.handlePasswordOneChange}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -135,6 +158,7 @@ export class SignUp extends React.Component {
                                             <LockIcon />
                                         </InputAdornment>
                                     }
+                                    onChange={this.handlePasswordTwoChange}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton

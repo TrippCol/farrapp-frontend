@@ -14,12 +14,12 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
+import apimock from '../ApiMock'
 
 import './SignUp.css';
 
 export class SignUp extends React.Component {
-    state = { showPasswordOne: false, passwordOne: '', showPasswordTwo: false, passwordTwo: '' , name: '', lastName: ''};
+    state = { showPasswordOne: false, passwordOne: '', showPasswordTwo: false, passwordTwo: '', name: '', lastName: '', email:''};
 
     handleClickShowPasswordOne = () => {
         this.setState(state => ({ showPasswordOne: !state.showPasswordOne }));
@@ -29,43 +29,37 @@ export class SignUp extends React.Component {
         this.setState(state => ({ showPasswordTwo: !state.showPasswordTwo }));
     };
 
-    handleLogin = () => {
-        console.log(this.state);
-        if(this.state.passwordOne !== this.state.passwordTwo){
-            alert("Both of the passwords should be equal");
+    handleSubmit = () => {
+        if (this.state.passwordOne === this.state.passwordTwo) {
+            apimock.addNewUser(this.state.name, this.state.lastName, this.state.email, this.state.passwordOne)
         }
     };
 
     handleNameChange = event => {
-        localStorage.setItem("name", event.target.value);
-        /*this.setState({
+        this.setState({
             name: event.target.value
-        });*/
+        });
     };
 
     handleLastNameChange = event => {
-        localStorage.setItem("lastName", event.target.value);
         this.setState({
             lastName: event.target.value
         });
     };
 
     handleEmailChange = event => {
-        localStorage.setItem("email", event.target.value);
         this.setState({
             email: event.target.value
         });
     };
 
     handlePasswordOneChange = event => {
-        localStorage.setItem("passwordOne", event.target.value);
         this.setState({
             passwordOne: event.target.value
         });
     };
 
     handlePasswordTwoChange = event => {
-        localStorage.setItem("passwordTwo", event.target.value);
         this.setState({
             passwordTwo: event.target.value
         });
@@ -77,7 +71,7 @@ export class SignUp extends React.Component {
                 <CssBaseline />
                 <main className="layout">
                     <Paper className="paper">
-                        
+
                         <Typography variant="headline">Create Account</Typography>
                         <form className="form">
                             <FormControl margin="normal" required fullWidth>
@@ -88,7 +82,7 @@ export class SignUp extends React.Component {
                                     autoComplete="name"
                                     autoFocus
                                     onChange={this.handleNameChange}
-                                    
+
                                 />
                             </FormControl>
 
@@ -99,7 +93,7 @@ export class SignUp extends React.Component {
                                     name="lastName"
                                     autoComplete="lastName"
                                     onChange={this.handleLastNameChange}
-                                    
+
                                 />
                             </FormControl>
 
@@ -131,7 +125,7 @@ export class SignUp extends React.Component {
                                             <LockIcon />
                                         </InputAdornment>
                                     }
-                                    
+
                                     onChange={this.handlePasswordOneChange}
                                     endAdornment={
                                         <InputAdornment position="end">
@@ -176,12 +170,12 @@ export class SignUp extends React.Component {
 
 
                             <Button
-                                type="submit"
+                                type=""
                                 fullWidth
                                 variant="raised"
                                 color="primary"
                                 className="submit"
-                                onClick={this.handleLogin}
+                                onClick={this.handleSubmit}
                             >
                                 Sign Up
                             </Button>

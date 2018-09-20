@@ -14,14 +14,35 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-
+import EmailIcon from '@material-ui/icons/EmailOutlined'
+import apimock from './ApiMock'
 import './Login.css';
 
 export class Login extends React.Component {
-    state = { showPassword: false, password: '' };
+    state = { showPassword: false, email: '', password: '' };
 
     handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
+    };
+
+    handleEmailChange = event => {
+        this.setState({
+            email: event.target.value
+        });
+    };
+
+    handlePasswordChange = event => {
+        this.setState({
+            password: event.target.value
+        });
+    };
+
+    handleLogin = () => {
+        apimock.enterLogin(this.state.email, this.state.password,
+            function (response) {
+                localStorage.setItem("token", response.data.accessToken);
+                localStorage.setItem("isLoggedIn", true);
+            })
     };
 
     render() {
@@ -38,16 +59,16 @@ export class Login extends React.Component {
 
 
                             <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="username">Username</InputLabel>
+                                <InputLabel htmlFor="email">Email</InputLabel>
                                 <Input
-                                    id="username"
-                                    name="username"
-                                    autoComplete="username"
+                                    id="email"
+                                    name="email"
+                                    autoComplete="email"
                                     autoFocus
-                                    onChange={this.props.handleEmailChange}
-                                    startAdornment= {
+                                    onChange={this.handleEmailChange}
+                                    startAdornment={
                                         <InputAdornment position="start">
-                                            <AccountCircle />
+                                            <EmailIcon />
                                         </InputAdornment>
                                     }
                                 />
@@ -60,7 +81,8 @@ export class Login extends React.Component {
                                 <Input
                                     id="adornment-password"
                                     type={this.state.showPassword ? 'text' : 'password'}
-                                    startAdornment= {
+                                    onChange={this.handlePasswordChange}
+                                    startAdornment={
                                         <InputAdornment position="start">
                                             <LockIcon />
                                         </InputAdornment>
@@ -70,7 +92,6 @@ export class Login extends React.Component {
                                             <IconButton
                                                 aria-label="Toggle password visibility"
                                                 onClick={this.handleClickShowPassword}
-                                                onMouseDown={this.handleMouseDownPassword}
                                             >
                                                 {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
                                             </IconButton>
@@ -81,12 +102,12 @@ export class Login extends React.Component {
 
 
                             <Button
-                                type="submit"
+                                type=""
                                 fullWidth
                                 variant="raised"
                                 color="primary"
                                 className="submit"
-                                onClick={this.props.handleLogin}
+                                onClick={this.handleLogin}
                             >
                                 Log in
                             </Button>

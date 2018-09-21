@@ -1,20 +1,40 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
-import {Summary} from './Summary';
+import { Summary } from './Summary';
+import { ProfileForm } from './ProfileForm'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import "./App.css";
 
 class App extends Component {
+
+  HomeView = () => (
+    <Summary />
+  );
+
+  ProfileConfView = () => (
+    <ProfileForm />
+  );
+
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">Testing Farrapp.</p>
-        <Summary></Summary>
-      </div>
-    );
+    console.log(window.location);
+    if (window.location.pathname === "/settings") {
+      return (
+        <Router>
+          <Route exact path="/settings" component={this.ProfileConfView} />
+        </Router>
+      );
+    }
+    else if (window.location.pathname === "/") {
+      return (
+        <Router>
+          <div>
+            <Route exact path="/" component={this.HomeView} />
+          </div>
+        </Router>
+      );
+    }
+
   }
 }
 

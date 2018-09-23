@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import './ProfileForm.css'
 import { Paper, TextField } from "@material-ui/core";
 export class ProfileForm extends Component {
@@ -9,7 +8,7 @@ export class ProfileForm extends Component {
         return (
             <div>
                 <Paper className="data-form">
-                    <label>Hola</label>
+                    <label>Modify data</label>
                     <TextField label="Nombre" defaultValue="Juan David"></TextField>
                     <TextField label="Apellidos" defaultValue="Ramirez Mendoza"></TextField>
                     <TextField label="Email" defaultValue="juan.ramirez-me@mail.escuelaing.edu.co"></TextField>

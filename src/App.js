@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import { Summary } from './Summary';
 import { ProfileForm } from './ProfileForm'
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import "./App.css";
 
 class App extends Component {

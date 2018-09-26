@@ -5,9 +5,19 @@ html {
 }
 
 .logo {
+  font-family: "Courgette", cursive;
+  text-align: center;
+  font-size: 30px;
   width: 120px;
   height: 31px;
-  background: rgba(255, 255, 255, 0.2);
   margin: 16px 24px 16px 0;
-  float: left;
+  float: center;
+  display: block;
+  height: 32px;
+  padding: 0;
+  position: relative;
+  max-width: 207px;
+  margin: 0 auto;
+  width: 80%;
+  color: white;
 }

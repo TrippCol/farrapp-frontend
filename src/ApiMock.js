@@ -5,6 +5,7 @@ var apimock = (function () {
     mockedUsers["juan.ramirez-me@mail.escuelaing.edu.co"] = {
         name: "Juan David",
         lastName: "Ramirez Mendoza",
+        id: "1019139950",
         email: "juan.ramirez-me@mail.escuelaing.edu.co",
         password: "qwerty1"
     };
@@ -12,6 +13,7 @@ var apimock = (function () {
     mockedUsers["kevin.mendieta@mail.escuelaing.edu.co"] = {
         name: "Kevin Jeffrey",
         lastName: "Mendieta Perez",
+        id: "10204567687",
         email: "kevin.mendieta@mail.escuelaing.edu.co",
         password: "qwerty2"
     };
@@ -19,6 +21,7 @@ var apimock = (function () {
     mockedUsers["nicolas.osorio@mail.escuelaing.edu.co"] = {
         name: "Nicolas",
         lastName: "Osorio Arias",
+        id: "2345423112",
         email: "nicolas.osorio@mail.escuelaing.edu.co",
         password: "qwerty3"
     };

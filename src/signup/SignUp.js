@@ -19,7 +19,7 @@ import apimock from '../ApiMock'
 import './SignUp.css';
 
 export class SignUp extends React.Component {
-    state = { showPasswordOne: false, passwordOne: '', showPasswordTwo: false, passwordTwo: '', name: '', lastName: '', email:''};
+    state = { showPasswordOne: false, passwordOne: '', showPasswordTwo: false, passwordTwo: '', name: '', lastName: '', email:'', id:''};
 
     handleClickShowPasswordOne = () => {
         this.setState(state => ({ showPasswordOne: !state.showPasswordOne }));
@@ -65,6 +65,12 @@ export class SignUp extends React.Component {
         });
     };
 
+    handleIdChange = event => {
+        this.setState({
+            id: event.target.value
+        });
+    };
+
     render() {
         return (
             <React.Fragment>
@@ -93,6 +99,18 @@ export class SignUp extends React.Component {
                                     name="lastName"
                                     autoComplete="lastName"
                                     onChange={this.handleLastNameChange}
+
+                                />
+                            </FormControl>
+
+
+                            <FormControl margin="normal" required fullWidth>
+                                <InputLabel htmlFor="id">Cedula</InputLabel>
+                                <Input
+                                    id="id"
+                                    name="id"
+                                    autoComplete="id"
+                                    onChange={this.handleIdChange}
 
                                 />
                             </FormControl>
@@ -170,7 +188,8 @@ export class SignUp extends React.Component {
 
 
                             <Button
-                                type=""
+                                type="submit"
+                                href="/"
                                 fullWidth
                                 variant="raised"
                                 color="primary"
@@ -180,6 +199,7 @@ export class SignUp extends React.Component {
                                 Sign Up
                             </Button>
                         </form>
+                        <a href="/"> Already have an account?</a>
                     </Paper>
                 </main>
             </React.Fragment>

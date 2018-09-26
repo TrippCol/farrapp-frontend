@@ -112,6 +112,7 @@ export class Login extends React.Component {
                                 Log in
                             </Button>
                         </form>
+                        <a href="/signup"> Create new account</a>
                     </Paper>
                 </main>
             </React.Fragment>

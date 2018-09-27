@@ -4,11 +4,11 @@ import name from "../img/name.svg";
 import ReactSVG from "react-svg";
 import { Layout, Menu, Breadcrumb } from "antd";
 import "antd/dist/antd.css";
-import LoginrForm from "./forms/LoginForm";
+import RegisterForm from "./forms/RegisterForm";
 
 class App extends Component {
   render() {
-    return <LoginrForm />;
+    return <RegisterForm />;
   }
 
   /*render() {

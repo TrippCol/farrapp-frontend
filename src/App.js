@@ -4,9 +4,8 @@ import "./App.css";
 import { SignUp } from "./signup/SignUp";
 import { Login } from "./Login";
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import {Login} from "./Login";
 import FarrApp from "./FarrApp";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+
 
 class App extends Component {
 

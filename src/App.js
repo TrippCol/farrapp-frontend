@@ -1,39 +1,34 @@
 import React, { Component } from "react";
-import { Summary } from './Summary';
-import { ProfileForm } from './ProfileForm'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import farrappLogo from "./farrappLogo.svg";
 import "./App.css";
+import { SignUp } from "./signup/SignUp";
+import { Login } from "./Login";
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 class App extends Component {
 
-  HomeView = () => (
-    <Summary />
+  LoginView = () => (
+    <Login />
   );
 
-  ProfileConfView = () => (
-    <ProfileForm />
+  SignUpView = () => (
+    <SignUp />
   );
-
 
   render() {
-    console.log(window.location);
-    if (window.location.pathname === "/settings") {
-      return (
-        <Router>
-          <Route exact path="/settings" component={this.ProfileConfView} />
-        </Router>
-      );
-    }
-    else if (window.location.pathname === "/") {
-      return (
-        <Router>
-          <div>
-            <Route exact path="/" component={this.HomeView} />
-          </div>
-        </Router>
-      );
-    }
-
+    return (
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <img src={farrappLogo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Tripp</h1>
+          </header>
+          <Route exact path="/" component={this.LoginView} />
+          <Route exact path="/signup" component={this.SignUpView} />
+        </div>
+      </Router>
+    );
   }
 }
 

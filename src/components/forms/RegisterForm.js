@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Icon, Input, Button } from "antd";
+import { Form, Icon, Input, Button, Checkbox } from "antd";
 import ReactSVG from "react-svg";
 import Recaptcha from "react-recaptcha";
 import "../../css/register-form.css";
@@ -9,6 +9,10 @@ const FormItem = Form.Item;
 
 class RegisterForm extends Component {
   state = {};
+
+  verifyCaptcha = () => {};
+
+  onLoadCaptcha = () => {};
 
   handleSubmit = e => {
     e.preventDefault();
@@ -22,7 +26,7 @@ class RegisterForm extends Component {
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue("password")) {
-      callback("Two passwords that you enter is inconsistent!");
+      callback("Las dos contraseñas no coinciden!");
     } else {
       callback();
     }
@@ -38,6 +42,18 @@ class RegisterForm extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const tailFormItemLayout = {
+      wrapperCol: {
+        xs: {
+          span: 24,
+          offset: 0
+        },
+        sm: {
+          span: 16,
+          offset: 8
+        }
+      }
+    };
     return (
       <div className="register-container">
         <div className="logo">
@@ -77,34 +93,50 @@ class RegisterForm extends Component {
               />
             )}
           </FormItem>
-          <FormItem label="Password">
+          <FormItem label="Contraseña">
             {getFieldDecorator("password", {
               rules: [
                 {
                   required: true,
-                  message: "Please input your password!"
+                  message: "Por favor escribe tu contraseña!"
                 },
                 {
                   validator: this.validateToNextPassword
                 }
               ]
-            })(<Input type="password" />)}
+            })(<Input type="password" placeholder="Contraseña" />)}
           </FormItem>
-          <FormItem label="Confirm Password">
+          <FormItem label="Confirmar contraseña">
             {getFieldDecorator("confirm", {
               rules: [
                 {
                   required: true,
-                  message: "Please confirm your password!"
+                  message: "Por favor confirma tu contraseña!"
                 },
                 {
                   validator: this.compareToFirstPassword
                 }
               ]
-            })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
+            })(
+              <Input
+                type="password"
+                placeholder="Confirmar contraseña"
+                onBlur={this.handleConfirmBlur}
+              />
+            )}
           </FormItem>
           <FormItem>
-            <Recaptcha />
+            <Recaptcha
+              sitekey="6LdYzHIUAAAAAAl3dESTfyU24XxldEtPTVs3NHzg"
+              render="explicit"
+              verifyCallback={this.verifyCaptcha}
+              onloadCallback={this.onLoadCaptcha}
+            />
+          </FormItem>
+          <FormItem {...tailFormItemLayout}>
+            <Button type="primary" htmlType="submit">
+              Register
+            </Button>
           </FormItem>
         </Form>
       </div>

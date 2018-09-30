@@ -6,6 +6,7 @@ export class Summary extends Component {
 
     render() {
         return (
+
             <li className='onclick-menu'>
                 <details className="">
                     <summary>
@@ -17,7 +18,7 @@ export class Summary extends Component {
                     <details-menu className="dropdown-menu">
                         <ul>
                             <li>
-                                <a role="menuitem"  className="dropdown-item" href="/settings">Settings</a>
+                                <a role="menuitem" className="dropdown-item" href="/settings">Settings</a>
                             </li>
                             <li>
                                 <a role="menuitem" className="dropdown-item" href="/">Sign Out</a>

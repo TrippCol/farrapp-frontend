@@ -4,6 +4,8 @@ import farrappLogo from "./farrappLogo.svg";
 import "./App.css";
 import { SignUp } from "./signup/SignUp";
 import { Login } from "./Login";
+import {Summary} from "./Summary";
+import {ProfileForm} from "./ProfileForm";
 class App extends Component {
 
   /*<header className="App-header">

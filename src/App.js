@@ -6,6 +6,11 @@ import { SignUp } from "./signup/SignUp";
 import { Login } from "./Login";
 class App extends Component {
 
+  /*<header className="App-header">
+            <img src={farrappLogo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Tripp</h1>
+          </header>*/
+
   LoginView = () => (
     <Login />
   );
@@ -14,16 +19,27 @@ class App extends Component {
     <SignUp />
   );
 
+  HomeView = () => (
+    <Summary />
+  );
+
+  ProfileConfView = () => (
+    <ProfileForm />
+  );
+
+  SummaryView = () => (
+    <Summary />
+  );
+
   render() {
     return (
       <Router>
-        <div className="App">
-          <header className="App-header">
-            <img src={farrappLogo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Tripp</h1>
-          </header>
-          <Route exact path="/" component={this.LoginView} />
+        <div className="">
+          
+          <Route exact path="/login" component={this.LoginView} />
           <Route exact path="/signup" component={this.SignUpView} />
+          <Route exact path="/settings" component={this.ProfileConfView} />
+          <Route exact path="/" component={this.HomeView} />
         </div>
       </Router>
     );

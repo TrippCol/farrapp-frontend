@@ -50,6 +50,18 @@ var apimock = (function () {
             }
         },
 
+        modifyUser: function(email, newName, newLastName, newId, newEmail, newPassword){
+            if (mockedUsers[email] !== undefined){
+                mockedUsers[email] = {
+                    name: newName,
+                    lastName: newLastName,
+                    id: newId,
+                    email: newEmail,
+                    password: newPassword
+                };
+            }
+        },
+
         getUsers: function (callback) {
             callback(mockedUsers);
         },

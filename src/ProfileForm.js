@@ -13,16 +13,80 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import EmailIcon from '@material-ui/icons/EmailOutlined'
 import apimock from './ApiMock'
 export class ProfileForm extends Component {
-    state = { newName: '', newLastName: '' };
+
+    constructor(){
+        super();
+        this.state.name = localStorage.getItem('profileInfo').name;
+        console.log(localStorage.getItem('profileInfo'));
+    }
+    state = {
+        name: localStorage.getItem('profileInfo').name, lastName: localStorage.getItem('profileInfo').lastName, id: '',
+        email: '',
+        showOldPassword: false, oldPassword: '',
+        showNewPasswordOne: false, newPasswordOne: '',
+        showNewPasswordTwo: false, newPasswordTwo: ''
+    };
+
+    handleClickShowOldPassword = () => {
+        this.setState(state => ({ showOldPassword: !state.showOldPassword }));
+    };
+
+    handleClickShowNewPasswordOne = () => {
+        this.setState(state => ({ showNewPasswordOne: !state.showNewPasswordOne }));
+    };
+
+    handleClickShowNewPasswordTwo = () => {
+        this.setState(state => ({ showNewPasswordTwo: !state.showNewPasswordTwo }));
+    };
+
+    handleNameChange = event => {
+        this.setState({
+            name: event.target.value
+        });
+    };
+
+    handleLastNameChange = event => {
+        this.setState({
+            lastName: event.target.value
+        });
+    };
+
+    handleIdChange = event => {
+        this.setState({
+            id: event.target.value
+        });
+    };
+
+    handleEmailChange = event => {
+        this.setState({
+            email: event.target.value
+        });
+    };
+
+    handleOldPasswordChange = event => {
+        this.setState({
+            oldPassword: event.target.value
+        });
+    };
+
+    handleNewPasswordOneChange = event => {
+        this.setState({
+            newPasswordOne: event.target.value
+        });
+    };
+
+    handleNewPasswordTwoChange = event => {
+        this.setState({
+            newPasswordTwo: event.target.value
+        });
+    };
 
     render() {
         return (
-            <div>
             <Paper className="paper">
                 <Typography variant="headline">Update info</Typography>
                 <form className="form">
@@ -34,6 +98,7 @@ export class ProfileForm extends Component {
                             autoComplete="name"
                             autoFocus
                             onChange={this.handleNameChange}
+                            defaultValue={this.state.name}
                         />
                     </FormControl>
 
@@ -76,8 +141,6 @@ export class ProfileForm extends Component {
                         />
                     </FormControl>
 
-
-
                     <Button
                         type=""
                         fullWidth
@@ -89,18 +152,16 @@ export class ProfileForm extends Component {
                         Update
                         </Button>
                 </form>
-            </Paper>
-
-            <Paper>
-                <Typography variant="headline">Password</Typography>
+                <br/>
+                <br/>
+                <Typography variant="headline">Update password</Typography>
                 <form className="form">
-
                     <FormControl margin="normal" required fullWidth>
-                        <InputLabel htmlFor="adornment-password">Current password</InputLabel>
+                        <InputLabel htmlFor="oldPassword">Old password</InputLabel>
                         <Input
-                            id="adornment-password"
-                            type={this.state.showPassword ? 'text' : 'password'}
-                            onChange={this.handlePasswordChange}
+                            id="oldPassword"
+                            type={this.state.showOldPassword ? 'text' : 'password'}
+                            onChange={this.handleOldPasswordChange}
                             startAdornment={
                                 <InputAdornment position="start">
                                     <LockIcon />
@@ -110,9 +171,57 @@ export class ProfileForm extends Component {
                                 <InputAdornment position="end">
                                     <IconButton
                                         aria-label="Toggle password visibility"
-                                        onClick={this.handleClickShowPassword}
+                                        onClick={this.handleClickShowOldPassword}
                                     >
-                                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                        {this.state.showOldPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
+                    </FormControl>
+
+                    <FormControl margin="normal" required fullWidth>
+                        <InputLabel htmlFor="newPasswordOne">New password</InputLabel>
+                        <Input
+                            id="newPasswordOne"
+                            type={this.state.showNewPasswordOne ? 'text' : 'password'}
+                            onChange={this.handleNewPasswordOneChange}
+                            startAdornment={
+                                <InputAdornment position="start">
+                                    <LockIcon />
+                                </InputAdornment>
+                            }
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="Toggle password visibility"
+                                        onClick={this.handleClickShowNewPasswordOne}
+                                    >
+                                        {this.state.showNewPasswordOne ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
+                    </FormControl>
+
+                    <FormControl margin="normal" required fullWidth>
+                        <InputLabel htmlFor="newPasswordTwo">Confirm new password</InputLabel>
+                        <Input
+                            id="newPasswordTwo"
+                            type={this.state.showNewPasswordTwo ? 'text' : 'password'}
+                            onChange={this.handleNewPasswordTwoChange}
+                            startAdornment={
+                                <InputAdornment position="start">
+                                    <LockIcon />
+                                </InputAdornment>
+                            }
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="Toggle password visibility"
+                                        onClick={this.handleClickShowNewPasswordTwo}
+                                    >
+                                        {this.state.showNewPasswordTwo ? <VisibilityOff /> : <Visibility />}
                                     </IconButton>
                                 </InputAdornment>
                             }
@@ -125,14 +234,13 @@ export class ProfileForm extends Component {
                         variant="raised"
                         color="primary"
                         className="submit"
-                        onClick={this.handleUpdatePassword}
+                        onClick={this.handleUpdate}
                     >
-                        Submit
+                        Save
                         </Button>
                 </form>
             </Paper>
-            </div>
-        
+
         );
     }
 }

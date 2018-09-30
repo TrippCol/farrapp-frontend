@@ -31,6 +31,7 @@ class LoginForm extends Component {
           <FormItem>
             {getFieldDecorator("mail", {
               rules: [
+                { type: "email", message: "No escribiste un correo valido!" },
                 { required: true, message: "Por favor escribe tu correo!" }
               ]
             })(

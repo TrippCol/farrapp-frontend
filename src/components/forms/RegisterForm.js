@@ -1,36 +1,31 @@
 import React, { Component } from "react";
+import { Form, Icon, Input, Button } from "antd";
+import ReactSVG from "react-svg";
+import Recaptcha from "react-recaptcha";
 import "../../css/register-form.css";
-import {
-  Form,
-  Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-  AutoComplete
-} from "antd";
+import logo from "../../img/logo.svg";
 
 const FormItem = Form.Item;
-const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
 
 class RegisterForm extends Component {
-  state = {
-    confirmDirty: false,
-    autoCompleteResult: []
-  };
+  state = {};
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
       }
     });
+  };
+
+  compareToFirstPassword = (rule, value, callback) => {
+    const form = this.props.form;
+    if (value && value !== form.getFieldValue("password")) {
+      callback("Two passwords that you enter is inconsistent!");
+    } else {
+      callback();
+    }
   };
 
   validateToNextPassword = (rule, value, callback) => {
@@ -41,63 +36,48 @@ class RegisterForm extends Component {
     callback();
   };
 
-  handleConfirmBlur = e => {
-    const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  };
-
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue("password")) {
-      callback("Two passwords that you enter is inconsistent!");
-    } else {
-      callback("match");
-    }
-  };
-
   render() {
     const { getFieldDecorator } = this.props.form;
-
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 }
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 }
-      }
-    };
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0
-        },
-        sm: {
-          span: 16,
-          offset: 8
-        }
-      }
-    };
     return (
       <div className="register-container">
-        <Form onSubmit={this.handleSubmit} className="register-form">
-          <FormItem {...formItemLayout} label="E-mail">
-            {getFieldDecorator("email", {
+        <div className="logo">
+          <ReactSVG src={logo} />
+        </div>
+        <Form
+          onSubmit={this.handleSubmit}
+          className="login-form"
+          style={{ paddingTop: "50px" }}
+        >
+          <FormItem label="Nombre">
+            {getFieldDecorator("userName", {
               rules: [
-                {
-                  type: "email",
-                  message: "The input is not valid E-mail!"
-                },
-                {
-                  required: true,
-                  message: "Please input your E-mail!"
-                }
+                { required: true, message: "Por favor escribe tu nombre!" }
               ]
-            })(<Input />)}
+            })(
+              <Input
+                prefix={
+                  <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                }
+                placeholder="Nombre"
+              />
+            )}
           </FormItem>
-          <FormItem {...formItemLayout} label="Password">
+          <FormItem label="Correo electrónico">
+            {getFieldDecorator("Mail", {
+              rules: [
+                { type: "email", message: "No escribiste un correo valido!" },
+                { required: true, message: "Por favor escribe tu correo!" }
+              ]
+            })(
+              <Input
+                prefix={
+                  <Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />
+                }
+                placeholder="Correo electrónico"
+              />
+            )}
+          </FormItem>
+          <FormItem label="Password">
             {getFieldDecorator("password", {
               rules: [
                 {
@@ -110,7 +90,7 @@ class RegisterForm extends Component {
               ]
             })(<Input type="password" />)}
           </FormItem>
-          <FormItem {...formItemLayout} label="Confirm Password">
+          <FormItem label="Confirm Password">
             {getFieldDecorator("confirm", {
               rules: [
                 {
@@ -123,31 +103,8 @@ class RegisterForm extends Component {
               ]
             })(<Input type="password" onBlur={this.handleConfirmBlur} />)}
           </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label={
-              <span>
-                Nickname&nbsp;
-                <Tooltip title="What do you want others to call you?">
-                  <Icon type="question-circle-o" />
-                </Tooltip>
-              </span>
-            }
-          >
-            {getFieldDecorator("nickname", {
-              rules: [
-                {
-                  required: true,
-                  message: "Please input your nickname!",
-                  whitespace: true
-                }
-              ]
-            })(<Input />)}
-          </FormItem>
-          <FormItem {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
-              Register
-            </Button>
+          <FormItem>
+            <Recaptcha />
           </FormItem>
         </Form>
       </div>

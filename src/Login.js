@@ -46,7 +46,7 @@ export class Login extends React.Component {
             });
         apimock.getUserByEmail(this.state.email,
             function(response){
-                localStorage.setItem("profileInfo", response.data);
+                localStorage.setItem("profileInfo", JSON.stringify(response.data));
             });
     };
 

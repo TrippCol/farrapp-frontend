@@ -8,10 +8,6 @@ import {Summary} from "./Summary";
 import {ProfileForm} from "./ProfileForm";
 class App extends Component {
 
-  /*<header className="App-header">
-            <img src={farrappLogo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Tripp</h1>
-          </header>*/
 
   LoginView = () => (
     <Login />

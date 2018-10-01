@@ -51,15 +51,28 @@ var apimock = (function () {
             }
         },
 
-        modifyUser: function(email, newName, newLastName, newId, newEmail, newPassword){
+        modifyUserInfo: function(email, name, lastName, id, newEmail, callback){
             if (mockedUsers[email] !== undefined){
-                mockedUsers[email] = {
-                    name: newName,
-                    lastName: newLastName,
-                    id: newId,
+                var password = mockedUsers[email].password;
+                delete(mockedUsers[email]);
+                mockedUsers[newEmail] = {
+                    name: name,
+                    lastName: lastName,
+                    id: id,
                     email: newEmail,
-                    password: newPassword
+                    password: password
                 };
+                localStorage.setItem("profileInfo", JSON.stringify(mockedUsers[newEmail]));
+                console.log(mockedUsers);
+                callback();
+            }
+        },
+
+        modifyUserPassword: function(newPassword, email, callback){
+            if(mockedUsers[email] !== undefined){
+                mockedUsers[email].password = newPassword;
+                localStorage.setItem("profileInfo", JSON.stringify(mockedUsers[email]));
+                callback();
             }
         },
 

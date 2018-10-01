@@ -10,23 +10,25 @@ export class PartyList extends React.Component {
     render() {
         const partyList = this.props.partyList.map((party, i) => {
             return (
-                <Party key={i} text={party.text} priority={party.priority} dueDate={party.dueDate}/>
+                <Party key={i} text={party.text} priority={party.priority} dueDate={party.dueDate} assistants={party.assistants}/>
             );
         });
 
-        return (      
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Task</th>
-                        <th>Priority</th>
-                        <th>Due Date</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {partyList}
-                    </tbody>
-                </table>
+        return (   
+              
+            <table style={{margin:'0 auto;'}} >
+                <thead>
+                <tr>
+                    <th>Evento</th>
+                    <th>Dirección</th>
+                    <th>Fecha</th>
+                </tr>
+                </thead>
+                <tbody>
+                {partyList}
+                </tbody>
+            </table>
+            
             
 
         );

@@ -4,21 +4,26 @@ import "./App.css";
 import { SignUp } from "./signup/SignUp";
 import { Login } from "./Login";
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import FarrApp from "./FarrApp";
+import PartyApp from "./PartyApp";
+import PartyPublisherApp from "./PartyPublisherApp";
 
 
 class App extends Component {
 
   PartyView = () => (
-    <FarrApp />
+    <PartyApp/>
   );
 
   LoginView = () => (
-    <Login />
+    <Login/>
   );
 
   SignUpView = () => (
-    <SignUp />
+    <SignUp/>
+  );
+
+  PublisherView = ()=>(
+    <PartyPublisherApp/>
   );
 
   render() {
@@ -32,7 +37,8 @@ class App extends Component {
           </header>
           <Route exact path="/login" component={this.LoginView} />
           <Route exact path="/signup" component={this.SignUpView} />
-          <Route exact path="/" component={this.PartyView} />
+          <Route exact path="/admin" component={this.PublisherView} />
+          <Route exact path="/" component={this.PartyView}/>
         </div>
       </Router>
     );

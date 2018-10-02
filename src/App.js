@@ -4,14 +4,14 @@ import "./App.css";
 import { SignUp } from "./signup/SignUp";
 import { Login } from "./login/Login";
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import PartyApp from "./PartyApp";
+import PartyUserApp from "./PartyUserApp";
 import PartyPublisherApp from "./PartyPublisherApp";
 
 
 class App extends Component {
 
   PartyView = () => (
-    <PartyApp/>
+    <PartyUserApp/>
   );
 
   LoginView = () => (

@@ -8,14 +8,16 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import "./PartyApp.css";
+import "./PartyUserApp.css";
 
-class PartyApp extends Component {
+class PartyUserApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {items: [], assistants:[] };
+        this.state = {parties: [] };
         this.handleSubmit = this.handleSubmit.bind(this);
+        /*this.addTodo= this.addTodo.bind(this);
+        this.getTodoList= this.getTodoList.bind(this);*/
     }
 
 
@@ -23,8 +25,6 @@ class PartyApp extends Component {
 
         return (
             <div className="App">
-
-           
                 <br/>
                 <br/>
                 <Card className="todo-form" onSubmit={this.handleSubmit}>
@@ -57,9 +57,7 @@ class PartyApp extends Component {
 
         e.preventDefault();
 
-        if (!this.state.text.length || !this.state.priority.length || !this.state.dueDate)
-            return;
-
+        
         const newItem = {
             text: this.state.text,
             priority: this.state.priority,
@@ -70,9 +68,39 @@ class PartyApp extends Component {
             items: prevState.items.concat(newItem),
             }
         ));
+
         
     }
+    /*
+    addTodo(todo){
+        var self = this;
+        var callback = {
+            onSuccess: function(){
+                self.getTodoList();
+            },
+            onFailed: function(error){
+                console.log(error);
+            }
+        };
+        addNewTodo(todo, callback);
+    }
+
+    getTodoList(){
+        var self = this;
+        var callback = {
+            onSuccess: function(response){
+                self.setState({
+                    todos: response.data.todos, text: "", priority: 1, dueDate: ""
+                });
+            },
+            onFailed: function(error){
+                console.log(error);
+            }
+        };
+        getTodos(callback);
+    }
+    */
 
 }
 
-export default PartyApp;
+export default PartyUserApp;

@@ -14,13 +14,12 @@ class PartyPublisherApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {items: [], text: '', address: '', dueDate: moment()};
+        this.state = {parties: [], partyName: '', description:'', eventDate:moment(), eventHour:'', address:'', price: 0, optionalDescription:'', typeOfMusic:'', assistants:[]};
         this.handleTextChange = this.handleTextChange.bind(this);
         this.handleAddressChange = this.handleAddressChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
 
     render() {
 

@@ -32,14 +32,12 @@ class PartyUserApp extends Component {
                     <CardContent style={{justifyContent: 'center'}}>
                     
                     <h3>Fiestas Disponibles:</h3>
-                    
 
-                    
                     </CardContent> 
                     <br/>
                     <CardActions style={{justifyContent: 'center'}}>
 
-                    <PartyList partyList={this.state.items}/>
+                    <PartyList partyList={this.state.parties}/>
                    
                     </CardActions>
 

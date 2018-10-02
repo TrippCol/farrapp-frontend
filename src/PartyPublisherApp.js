@@ -15,9 +15,15 @@ class PartyPublisherApp extends Component {
     constructor(props) {
         super(props);
         this.state = {parties: [], partyName: '', description:'', eventDate:moment(), eventHour:'', address:'', price: 0, optionalDescription:'', typeOfMusic:'', assistants:[]};
-        this.handleTextChange = this.handleTextChange.bind(this);
+        this.handlePartyNameChange = this.handlePartyNameChange.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+        this.handleEventDateChange = this.handleEventDateChange.bind(this);
+        this.handleEventHourChange= this.handleEventHourChange.bind(this);
         this.handleAddressChange = this.handleAddressChange.bind(this);
-        this.handleDateChange = this.handleDateChange.bind(this);
+        this.handlePriceChange = this.handlePriceChange.bind(this);
+        this.handleOptionalDescriptionChange=this.handleOptionalDescription.bind(this);
+        this.handleTypeOfMusicChange= this.handleTypeOfMusicChange.bind(this);
+        
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -61,15 +67,32 @@ class PartyPublisherApp extends Component {
                 <br/>
                 <br/>
                 <Card style={{justifyContent: 'center'}}>
-                    <PartyList style={{justifyContent: 'center'}}  partyList={this.state.items}/>
+                    <PartyList style={{justifyContent: 'center'}}  partyList={this.state.parties}/>
                 </Card>
             </div>
         );
     }
 
-    handleTextChange(e) {
+    handlePartyNameChange(e) {
         this.setState({
-            text: e.target.value
+            partyName: e.target.value
+        });
+    }
+
+    handleDescriptionChange(e) {
+        this.setState({
+            description: e.target.value
+        }); 
+    }
+
+    handleDateChange(date) {
+        this.setState({
+            eventDate: date
+        });
+    }
+    handleEventHourChange(time) {
+        this.setState({
+            eventDate: time
         });
     }
 
@@ -79,11 +102,26 @@ class PartyPublisherApp extends Component {
         }); 
     }
 
-    handleDateChange(date) {
+    handlePriceChange(e) {
         this.setState({
-            dueDate: date
-        });
+            price: e.target.value
+        }); 
     }
+
+    handleOptionalDescriptionChange(e){
+        this.setState({
+            optionalDescription: e.target.value
+        })
+    }
+
+    handleTypeOfMusicChange(e){
+        this.setState({
+            typeOfMusic:e.target.value
+        })
+    }
+
+    
+
 
     handleSubmit(e) {
 

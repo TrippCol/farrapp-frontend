@@ -8,9 +8,9 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import "./FarrApp.css";
+import "./PartyApp.css";
 
-class FarrApp extends Component {
+class PartyPublisherApp extends Component {
 
     constructor(props) {
         super(props);
@@ -114,4 +114,4 @@ class FarrApp extends Component {
 
 }
 
-export default FarrApp;
+export default PartyPublisherApp;

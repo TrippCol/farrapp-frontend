@@ -5,10 +5,13 @@ import ReactSVG from "react-svg";
 import { Layout, Menu, Breadcrumb } from "antd";
 import "antd/dist/antd.css";
 import RegisterForm from "./forms/RegisterForm";
+import LandingHeader from "./bars/LandingHeader";
+import AppFooter from "./shared/AppFooter";
+import Landing from "./views/Landing";
 
 class App extends Component {
   render() {
-    return <RegisterForm />;
+    return <Landing />;
   }
 
   /*render() {

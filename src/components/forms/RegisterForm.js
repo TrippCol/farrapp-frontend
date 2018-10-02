@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { Form, Icon, Input, Button } from "antd";
 import ReactSVG from "react-svg";
 import Recaptcha from "react-recaptcha";
 import "../../css/register-form.css";

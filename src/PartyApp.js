@@ -3,7 +3,7 @@ import './App.css';
 import {PartyList} from "./PartyList";
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from "moment";
-import Button from '@material-ui/core/Button';
+
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -40,9 +40,7 @@ class PartyApp extends Component {
                     <CardActions style={{justifyContent: 'center'}}>
 
                     <PartyList partyList={this.state.items}/>
-                    <Button variant="fab" aria-label="Add" color="primary" size="large" onClick={this.handleSubmit} >
-                        ¡Agregarme a la fiesta!,  eres el #{this.state.items.length + 1}
-                    </Button>
+                   
                     </CardActions>
 
                 </Card>

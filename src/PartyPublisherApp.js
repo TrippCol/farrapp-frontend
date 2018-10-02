@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import "./PartyApp.css";
+import "./PartyPublisherApp.css";
 
 class PartyPublisherApp extends Component {
 
@@ -27,7 +27,6 @@ class PartyPublisherApp extends Component {
         return (
             <div className="App">
 
-           
                 <br/>
                 <br/>
                 <Card className="todo-form" onSubmit={this.handleSubmit}>
@@ -37,8 +36,6 @@ class PartyPublisherApp extends Component {
                         Nombre de la Farra:
                     </label>
 
-                
-                    
                     <TextField id="text" type="text" onChange={this.handleTextChange} value={this.state.text}/>
 
                     <br/>
@@ -50,9 +47,7 @@ class PartyPublisherApp extends Component {
                     <br/>
                     <br/>
                     <TextField id="date" label="Delivery Date:" type="date" onChange={this.props.handleDateChange} value={this.state.date}
-                    InputLabelProps={{
-                        shrink: true
-                    }}
+                    InputLabelProps={{shrink: true}}
                     />
 
                     </CardContent> 

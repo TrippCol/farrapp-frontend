@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import farrappLogo from "./farrappLogo.svg";
+import farrappLogo from "./resources/farrappLogo.svg";
 import "./App.css";
 import { SignUp } from "./signup/SignUp";
-import { Login } from "./Login";
+import { Login } from "./login/Login";
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import PartyApp from "./PartyApp";
 import PartyPublisherApp from "./PartyPublisherApp";

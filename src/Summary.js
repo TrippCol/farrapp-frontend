@@ -4,6 +4,12 @@ import './Summary.css'
 export class Summary extends Component {
     state = {};
 
+    handleLogOut = () =>{
+        localStorage.removeItem("token");
+        localStorage.removeItem("profileInfo");
+        localStorage.removeItem("isLoggedIn");
+    }
+
     render() {
         return (
 
@@ -21,7 +27,7 @@ export class Summary extends Component {
                                 <a role="menuitem" className="dropdown-item" href="/settings">Settings</a>
                             </li>
                             <li>
-                                <a role="menuitem" className="dropdown-item" href="/">Sign Out</a>
+                                <a role="menuitem" className="dropdown-item" href="/login" onClick={this.handleLogOut}>Sign Out</a>
                             </li>
                         </ul>
                     </details-menu>

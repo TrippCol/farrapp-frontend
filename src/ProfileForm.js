@@ -75,20 +75,38 @@ export class ProfileForm extends Component {
     };
 
     handleUpdateInfo = () => {
-        apimock.modifyUserInfo(JSON.parse(localStorage.getItem('profileInfo')).email, this.state.name, this.state.lastName, this.state.id, this.state.email,
-        function(){
-            console.log("YA SE MODIFICO EL USUARIO");
-        });
+        console.log(this.state.name);
+        apimock.modifyUserInfo(this.profile.email, this.state.name, this.state.lastName, this.state.id, this.state.email,
+            function () {
+                console.log("YA SE MODIFICO EL USUARIO");
+            });
     }
 
     handleUpdatePassword = () => {
-        if(this.state.oldPassword === this.profile.password && 
-            this.state.newPasswordOne === this.state.newPasswordTwo){
-                apimock.modifyUserPassword(this.state.newPasswordOne, JSON.parse(localStorage.getItem('profileInfo')).email, function(){
-                    console.log("YA SE MODIFICO LA CONTRASEÑA");
-                });
-            }
+        if (this.state.oldPassword === this.profile.password &&
+            this.state.newPasswordOne === this.state.newPasswordTwo) {
+            apimock.modifyUserPassword(this.state.newPasswordOne, JSON.parse(localStorage.getItem('profileInfo')).email, function () {
+                console.log("YA SE MODIFICO LA CONTRASEÑA");
+            });
+        }
     };
+
+    isUpdateButtonDisabled = () => {
+        return this.state.name === this.profile.name &&
+            this.state.lastName === this.profile.lastName &&
+            this.state.email === this.profile.email &&
+            this.state.id === this.profile.id;
+    }
+
+    handleCancelButton = () => {
+        this.setState({
+            name: this.profile.name,
+            lastName: this.profile.lastName,
+            email: this.profile.email,
+            id: this.profile.id
+        });
+    }
+
 
     render() {
         return (
@@ -150,6 +168,7 @@ export class ProfileForm extends Component {
                                     type="reset"
                                     color="secondary"
                                     variant="raised"
+                                    onClick={this.handleCancelButton}
                                 >
                                     Cancel
                                 </Button>
@@ -159,6 +178,8 @@ export class ProfileForm extends Component {
                                     color="primary"
                                     className="submit"
                                     onClick={this.handleUpdateInfo}
+                                    disabled={this.isUpdateButtonDisabled()}
+                                    href="/"
                                 >
                                     Update
                                 </Button>
@@ -179,6 +200,7 @@ export class ProfileForm extends Component {
                                         id="oldPassword"
                                         type={this.state.showOldPassword ? 'text' : 'password'}
                                         onChange={this.handleOldPasswordChange}
+                                        error={this.state.oldPassword !== this.profile.password}
                                     />
                                 </FormControl>
                             </li>
@@ -189,6 +211,7 @@ export class ProfileForm extends Component {
                                         id="newPasswordOne"
                                         type={this.state.showNewPasswordOne ? 'text' : 'password'}
                                         onChange={this.handleNewPasswordOneChange}
+                                        error={this.state.newPasswordOne !== this.state.newPasswordTwo}
 
                                     />
                                 </FormControl>
@@ -200,6 +223,8 @@ export class ProfileForm extends Component {
                                         id="newPasswordTwo"
                                         type={this.state.showNewPasswordTwo ? 'text' : 'password'}
                                         onChange={this.handleNewPasswordTwoChange}
+                                        error={this.state.newPasswordOne !== this.state.newPasswordTwo}
+
                                     />
                                 </FormControl>
                             </li>
@@ -209,7 +234,9 @@ export class ProfileForm extends Component {
                                     variant="raised"
                                     color="primary"
                                     className="submit"
+                                    href="/"
                                     onClick={this.handleUpdatePassword}
+
                                 >
                                     Save
                                 </Button>

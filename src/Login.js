@@ -107,12 +107,13 @@ export class Login extends React.Component {
 
 
                             <Button
-                                type=""
+                                type="button"
                                 fullWidth
                                 variant="raised"
                                 color="primary"
                                 className="submit"
                                 onClick={this.handleLogin}
+                                href="/"
                             >
                                 Log in
                             </Button>

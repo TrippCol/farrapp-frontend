@@ -8,7 +8,7 @@ export class Party extends React.Component {
         return (
             <tr>
                 <td>{this.props.text}</td>
-                <td>{this.props.priority}</td>
+                <td>{this.props.address}</td>
                 <td>{this.props.dueDate.format('DD-MM-YYYY')}</td>
             </tr>
         );

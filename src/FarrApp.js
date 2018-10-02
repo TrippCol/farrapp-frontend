@@ -14,9 +14,9 @@ class FarrApp extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {items: [], text: '', priority: 0, dueDate: moment()};
+        this.state = {items: [], text: '', address: '', dueDate: moment()};
         this.handleTextChange = this.handleTextChange.bind(this);
-        this.handlePriorityChange = this.handlePriorityChange.bind(this);
+        this.handleAddressChange = this.handleAddressChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -34,7 +34,7 @@ class FarrApp extends Component {
                     <CardContent>
                     <h3>Se armó la rumba!</h3>
                     <label htmlFor="text" className="right-margin">
-                        Farra:
+                        Nombre de la Farra:
                     </label>
 
                 
@@ -43,10 +43,10 @@ class FarrApp extends Component {
 
                     <br/>
                     <br/>
-                    <label htmlFor="priority" className="right-margin">
-                        Prioridad:
+                    <label htmlFor="address" className="right-margin">
+                        Dirección:
                     </label>
-                    <TextField id="priority" type="number" onChange={this.handlePriorityChange} value={this.state.priority}/>
+                    <TextField id="address" type="text" onChange={this.handleAddressChange} value={this.state.address}/>
                     <br/>
                     <br/>
                     <TextField id="date" label="Delivery Date:" type="date" onChange={this.props.handleDateChange} value={this.state.date}
@@ -58,16 +58,17 @@ class FarrApp extends Component {
                     </CardContent> 
                     <br/>
                     <CardActions style={{justifyContent: 'center'}}>
-                    <Button variant="fab" aria-label="Add" color="primary" size="large" onClick={this.handleSubmit} >
-                        ¡Agregarme a la fiesta!,  eres el #{this.state.items.length + 1}
+                    <Button variant="fab" aria-label="Add" color="primary" onClick={this.handleSubmit} >
+                        +
                     </Button>
                     </CardActions>
 
                 </Card>
                 <br/>
                 <br/>
-                <PartyList style={{justifyContent: 'center'}} color="blue" partyList={this.state.items}/>
-                
+                <Card style={{justifyContent: 'center'}}>
+                    <PartyList style={{justifyContent: 'center'}}  partyList={this.state.items}/>
+                </Card>
             </div>
         );
     }
@@ -78,9 +79,9 @@ class FarrApp extends Component {
         });
     }
 
-    handlePriorityChange(e) {
+    handleAddressChange(e) {
         this.setState({
-            priority: e.target.value
+            address: e.target.value
         }); 
     }
 
@@ -94,19 +95,19 @@ class FarrApp extends Component {
 
         e.preventDefault();
 
-        if (!this.state.text.length || !this.state.priority.length || !this.state.dueDate)
+        if (!this.state.text.length || !this.state.address.length || !this.state.dueDate)
             return;
 
         const newItem = {
             text: this.state.text,
-            priority: this.state.priority,
+            address: this.state.address,
             dueDate: this.state.dueDate,
 
         };
         this.setState(prevState => ({
             items: prevState.items.concat(newItem),
             text: "",
-            priority: "",
+            address: "",
             dueDate: "" })
         );
     }

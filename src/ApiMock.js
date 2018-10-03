@@ -27,6 +27,20 @@ var apimock = (function () {
     };
 
 
+    var mockedParties=[{
+        partyName: "FIECI",
+        description:"La mejor fiesta universitaria en Bogotá",
+        address: "AK 45 (Autonorte) #205-59, Bogotá, Cundinamarca",
+        place:"Escuela Colombiana De Ingeniería Julio Garavito",
+        eventDate: "31-10-2018",
+        eventHour: "20:00",
+        optionalDescription: "Fiesta de disfraces",
+        price: 2000,
+        typeOfMusic:"Mix 90's", 
+        assistants:[]
+    }];
+    
+
     return {
         addNewUser: function (name, lastName, email, password) {
             mockedUsers[email] = {
@@ -47,16 +61,68 @@ var apimock = (function () {
             } else{
                 localStorage.removeItem("token");
                 localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("profileInfo");
+            }
+        },
+
+        modifyUserInfo: function(email, name, lastName, id, newEmail, callback){
+            if (mockedUsers[email] !== undefined){
+                var password = mockedUsers[email].password;
+                delete(mockedUsers[email]);
+                mockedUsers[newEmail] = {
+                    name: name,
+                    lastName: lastName,
+                    id: id,
+                    email: newEmail,
+                    password: password
+                };
+                localStorage.setItem("profileInfo", JSON.stringify(mockedUsers[newEmail]));
+                console.log(mockedUsers);
+                callback();
+            }
+        },
+
+        modifyUserPassword: function(newPassword, email, callback){
+            if(mockedUsers[email] !== undefined){
+                mockedUsers[email].password = newPassword;
+                localStorage.setItem("profileInfo", JSON.stringify(mockedUsers[email]));
+                callback();
             }
         },
 
         getUsers: function (callback) {
-            callback(mockedUsers);
+            callback({
+                data: mockedUsers
+            });
         },
 
         getUserByEmail: function (email, callback) {
-            callback(mockedUsers[email]);
+            callback({
+                data: mockedUsers[email]
+            });
         },
+
+
+        getParties: function(callback){
+            callback({data:mockedParties});
+        },
+        
+        addNewParty: function (partyName, description, eventDate, eventHour, address, place, price, optionalDescription,typeOfMusic,  assistants) {
+            mockedUsers[partyName] = {
+                partyName: partyName,
+                description: description,
+                eventDate: eventDate,
+                eventHour: eventHour,
+                address: address,
+                place:place,
+                price: price,
+                optionalDescription:optionalDescription,
+                typeOfMusic:typeOfMusic,
+                assistants:assistants
+            };
+        },
+
+         
 
     }
 
@@ -64,71 +130,3 @@ var apimock = (function () {
 
 export default apimock;
 
-/*
-apiclient = (function () {
-    return {
-        getBlueprintsByAuthor: function (authname, callback) {
-            $.get("/blueprints/" + authname).then(
-                callback,
-                function (response) {
-                    alert(response.responseText);
-                }
-            );
-        },
-
-        getBlueprintsByNameAndAuthor: function (authname, bpname, callback) {
-            $.get("/blueprints/" + authname + "/" + bpname).then(
-                callback,
-                function (response) {
-                    alert(response.responseText);
-                }
-            );
-        },
-
-        updateAuthorBlueprint: function (blueprint, callback) {
-            $.ajax({
-                url: "/blueprints/" + blueprint.author + "/" + blueprint.name,
-                type: 'PUT',
-                data: JSON.stringify(blueprint),
-                contentType: "application/json"
-            }).then(
-                function () {
-                    $.get("/blueprints/" + blueprint.author, callback);
-                },
-                function (response) {
-                    alert(response.responseText);
-                }
-            );
-        },
-
-        createBlueprint: function (blueprint, callback) {
-            $.ajax({
-                url: "/blueprints",
-                type: 'POST',
-                data: JSON.stringify(blueprint),
-                contentType: "application/json"
-            }).then(
-                function () {
-                    $.get("/blueprints/" + blueprint.author, callback);
-                },
-                function (response) {
-                    alert(response.responseText);
-                }
-            );
-        },
-
-        deleteBlueprint: function (blueprint, callback) {
-            $.ajax({
-                url: "/blueprints/" + blueprint.author + "/" + blueprint.name,
-                type: 'DELETE'
-            }).then(
-                function () {
-                    $.get("/blueprints/" + blueprint.author, callback);
-                },
-                function (response) {
-                    alert(response.responseText);
-                }
-            );
-        }
-    };
-})();*/

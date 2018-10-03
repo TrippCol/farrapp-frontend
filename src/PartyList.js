@@ -12,8 +12,9 @@ export class PartyList extends React.Component {
         const partyList = this.props.partyList.map((party, i) => {
             return (
 
-                <Party key={i} partyName={party.partyName} description={party.description} eventDate={party.eventDate} eventHour={party.eventHour} address={party.address} 
-                price={party.price} optionalDescription={party.optionalDescription} typeOfMusic={party.typeOfMusic} assistants={party.assistants}/>
+                <Party key={i} partyName={party.partyName} description={party.description} eventDate={party.eventDate} eventHour={party.eventHour} 
+                address={party.address} place={party.place}price={party.price} optionalDescription={party.optionalDescription}
+                typeOfMusic={party.typeOfMusic} assistants={party.assistants}/>
             );
         });
 
@@ -23,15 +24,15 @@ export class PartyList extends React.Component {
                 <table>
                     <thead>
                     <tr>
-                        <th>Nombre Evento:</th>
-                        <th>Descripción:</th>
-                        <th>Fecha:</th>
-                        <th>Hora:</th>
-                        <th>Dirección:</th>
-                        <th>Precio:</th>
-                        <th>Descr2:</th>
-                        <th>Género:</th>
-                        <th>assistants:</th>
+                        <th>Nombre Evento</th>
+                        <th>Descripción</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Dirección</th>
+                        <th>Lugar</th>
+                        <th>Precio</th>
+                        <th>Info</th>
+                        <th>Género</th>
                     </tr>
                     </thead>
                     <tbody>

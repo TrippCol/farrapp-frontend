@@ -8,8 +8,8 @@ const client = axios.create({
 }); 
 
 
-  export function getTodos(callback) {
-    client.get("/todos").then(function (response) {
+  export function getParties(callback) {
+    client.get("/parties").then(function (response) {
       callback.onSuccess(response);
     })
     .catch(function (error) {
@@ -17,8 +17,8 @@ const client = axios.create({
     });
   }
 
-  export function addNewTodo(todo, callback) {
-      client.post("/todos", { todo })
+  export function addNewParty(party, callback) {
+      client.post("/parties", { party })
       .then(function () {
         callback.onSuccess();
       })

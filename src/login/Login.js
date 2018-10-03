@@ -38,11 +38,16 @@ export class Login extends React.Component {
     };
 
     handleLogin = () => {
+        let self = this;
         apimock.enterLogin(this.state.email, this.state.password,
             function (response) {
                 localStorage.setItem("token", response.data.accessToken);
                 localStorage.setItem("isLoggedIn", true);
-            })
+            });
+        apimock.getUserByEmail(this.state.email,
+            function(response){
+                localStorage.setItem("profileInfo", JSON.stringify(response.data));
+            });
     };
 
     render() {
@@ -102,12 +107,13 @@ export class Login extends React.Component {
 
 
                             <Button
-                                type=""
+                                type="button"
                                 fullWidth
                                 variant="raised"
                                 color="primary"
                                 className="submit"
                                 onClick={this.handleLogin}
+                                href="/"
                             >
                                 Log in
                             </Button>

@@ -199,7 +199,7 @@ export class SignUp extends React.Component {
                                 Sign Up
                             </Button>
                         </form>
-                        <a href="/"> Already have an account?</a>
+                        <a href="/login"> Already have an account?</a>
                     </Paper>
                 </main>
             </React.Fragment>

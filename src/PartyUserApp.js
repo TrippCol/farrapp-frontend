@@ -8,10 +8,15 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import "./PartyUserApp.css";
 import apimock from './ApiMock';
 
 class PartyUserApp extends Component {
+
+    
+
+
 
     constructor(props) {
         super(props);
@@ -27,14 +32,44 @@ class PartyUserApp extends Component {
         this.getTodoList= this.getTodoList.bind(this);*/
     }
 
+    handleLogOut = () =>{
+        localStorage.removeItem("token");
+        localStorage.removeItem("profileInfo");
+        localStorage.removeItem("isLoggedIn");
+    }
+
 
     render() {
 
         return (
             <div className="App">
+                
                 <br/>
                 <br/>
+
                 <Card className="todo-form">
+
+                    <li className='onclick-menu'>
+                        <details className="">
+                            <summary>
+                                <AccountCircle />
+                                <span className="dropdown-caret">
+
+                                </span>
+                            </summary>
+                            <details-menu className="dropdown-menu">
+                                <ul>
+                                    <li>
+                                        <a role="menuitem" className="dropdown-item" href="/settings">Configuración</a>
+                                    </li>
+                                    <li>
+                                        <a role="menuitem" className="dropdown-item" href="/login" onClick={this.handleLogOut}>Desconectar</a>
+                                    </li>
+                                </ul>
+                            </details-menu>
+                        </details>
+                    </li>
+
                     
                     <CardContent style={{justifyContent: 'center'}}>
                     
@@ -54,6 +89,7 @@ class PartyUserApp extends Component {
                 
                 
             </div>
+
         );
     }
 

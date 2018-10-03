@@ -28,6 +28,13 @@ class PartyPublisherApp extends Component {
         this.handleTypeOfMusicChange= this.handleTypeOfMusicChange.bind(this);
         
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        apimock.getParties(function(response){
+            localStorage.setItem("FIESTON", JSON.stringify(response.data));
+        })
+
+        this.state = {parties: JSON.parse(localStorage.getItem("FIESTON")) };
+
     }
 
     render() {
@@ -216,7 +223,7 @@ class PartyPublisherApp extends Component {
         };*/
         var self=this;
         apimock.getParties( function (response) {
-            self.setState({ parties: response.data.mockedParties, partyName: '', description:'', eventDate:moment(), eventHour:'09:30', address:'',place:'', price: 0, optionalDescription:'', typeOfMusic:'', assistants:[]
+            self.setState({ parties: response.data, partyName: '', description:'', eventDate:moment(), eventHour:'09:30', address:'',place:'', price: 0, optionalDescription:'', typeOfMusic:'', assistants:[]
         });
             
         }

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import farrappLogo from "./farrappLogo.svg";
 import "./App.css";
 import { SignUp } from "./signup/SignUp";
 import { Login } from "./Login";
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-
+import { Summary } from "./Summary";
+import { ProfileForm } from "./ProfileForm";
 class App extends Component {
+
 
   LoginView = () => (
     <Login />
@@ -15,17 +17,36 @@ class App extends Component {
     <SignUp />
   );
 
+  HomeView = () => (
+    <Summary />
+  );
+
+  ProfileConfView = () => (
+    <ProfileForm />
+  );
+
+  SummaryView = () => (
+    <Summary />
+  );
+
   render() {
+    let routeOptions;
+    if (localStorage.getItem("isLoggedIn")) {
+      routeOptions = <Switch>
+        <Route exact path="/settings" component={this.ProfileConfView} />
+        <Route exact path="/" component={this.HomeView} />
+        <Redirect to="/"></Redirect>
+      </Switch>
+    } else {
+      routeOptions = <Switch>
+        <Route exact path="/login" component={this.LoginView} />
+        <Route exact path="/signup" component={this.SignUpView} />
+        <Redirect to="/login"></Redirect>
+      </Switch>
+    }
     return (
       <Router>
-        <div className="App">
-          <header className="App-header">
-            <img src={farrappLogo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Tripp</h1>
-          </header>
-          <Route exact path="/" component={this.LoginView} />
-          <Route exact path="/signup" component={this.SignUpView} />
-        </div>
+        {routeOptions}
       </Router>
     );
   }

@@ -47,15 +47,45 @@ var apimock = (function () {
             } else{
                 localStorage.removeItem("token");
                 localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("profileInfo");
+            }
+        },
+
+        modifyUserInfo: function(email, name, lastName, id, newEmail, callback){
+            if (mockedUsers[email] !== undefined){
+                var password = mockedUsers[email].password;
+                delete(mockedUsers[email]);
+                mockedUsers[newEmail] = {
+                    name: name,
+                    lastName: lastName,
+                    id: id,
+                    email: newEmail,
+                    password: password
+                };
+                localStorage.setItem("profileInfo", JSON.stringify(mockedUsers[newEmail]));
+                console.log(mockedUsers);
+                callback();
+            }
+        },
+
+        modifyUserPassword: function(newPassword, email, callback){
+            if(mockedUsers[email] !== undefined){
+                mockedUsers[email].password = newPassword;
+                localStorage.setItem("profileInfo", JSON.stringify(mockedUsers[email]));
+                callback();
             }
         },
 
         getUsers: function (callback) {
-            callback(mockedUsers);
+            callback({
+                data: mockedUsers
+            });
         },
 
         getUserByEmail: function (email, callback) {
-            callback(mockedUsers[email]);
+            callback({
+                data: mockedUsers[email]
+            });
         },
 
     }
@@ -64,71 +94,3 @@ var apimock = (function () {
 
 export default apimock;
 
-/*
-apiclient = (function () {
-    return {
-        getBlueprintsByAuthor: function (authname, callback) {
-            $.get("/blueprints/" + authname).then(
-                callback,
-                function (response) {
-                    alert(response.responseText);
-                }
-            );
-        },
-
-        getBlueprintsByNameAndAuthor: function (authname, bpname, callback) {
-            $.get("/blueprints/" + authname + "/" + bpname).then(
-                callback,
-                function (response) {
-                    alert(response.responseText);
-                }
-            );
-        },
-
-        updateAuthorBlueprint: function (blueprint, callback) {
-            $.ajax({
-                url: "/blueprints/" + blueprint.author + "/" + blueprint.name,
-                type: 'PUT',
-                data: JSON.stringify(blueprint),
-                contentType: "application/json"
-            }).then(
-                function () {
-                    $.get("/blueprints/" + blueprint.author, callback);
-                },
-                function (response) {
-                    alert(response.responseText);
-                }
-            );
-        },
-
-        createBlueprint: function (blueprint, callback) {
-            $.ajax({
-                url: "/blueprints",
-                type: 'POST',
-                data: JSON.stringify(blueprint),
-                contentType: "application/json"
-            }).then(
-                function () {
-                    $.get("/blueprints/" + blueprint.author, callback);
-                },
-                function (response) {
-                    alert(response.responseText);
-                }
-            );
-        },
-
-        deleteBlueprint: function (blueprint, callback) {
-            $.ajax({
-                url: "/blueprints/" + blueprint.author + "/" + blueprint.name,
-                type: 'DELETE'
-            }).then(
-                function () {
-                    $.get("/blueprints/" + blueprint.author, callback);
-                },
-                function (response) {
-                    alert(response.responseText);
-                }
-            );
-        }
-    };
-})();*/

@@ -28,8 +28,6 @@ class PartyUserApp extends Component {
 
         this.state = {parties: JSON.parse(localStorage.getItem("FIESTON")) };
 
-        /*this.addTodo= this.addTodo.bind(this);
-        this.getTodoList= this.getTodoList.bind(this);*/
     }
 
     handleLogOut = () =>{

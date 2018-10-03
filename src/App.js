@@ -1,20 +1,30 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import farrappLogo from "./farrappLogo.svg";
+import farrappLogo from "./resources/farrappLogo.svg";
 import "./App.css";
 import { SignUp } from "./signup/SignUp";
-import { Login } from "./Login";
-import { Summary } from "./Summary";
+import { Login } from "./login/Login";
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import PartyUserApp from "./PartyUserApp";
+import PartyPublisherApp from "./PartyPublisherApp";
 import { ProfileForm } from "./ProfileForm";
+import { Summary } from "./Summary";
+
 class App extends Component {
 
+  PartyView = () => (
+    <PartyUserApp/>
+  );
 
   LoginView = () => (
-    <Login />
+    <Login/>
   );
 
   SignUpView = () => (
-    <SignUp />
+    <SignUp/>
+  );
+
+  PublisherView = ()=>(
+    <PartyPublisherApp/>
   );
 
   HomeView = () => (
@@ -30,11 +40,13 @@ class App extends Component {
   );
 
   render() {
+    
     let routeOptions;
     if (localStorage.getItem("isLoggedIn")) {
       routeOptions = <Switch>
+        <Route exact path="/admin" component={this.PublisherView} />
         <Route exact path="/settings" component={this.ProfileConfView} />
-        <Route exact path="/" component={this.HomeView} />
+        <Route exact path="/" component={this.PartyView} />
         <Redirect to="/"></Redirect>
       </Switch>
     } else {
@@ -45,9 +57,15 @@ class App extends Component {
       </Switch>
     }
     return (
-      <Router>
-        {routeOptions}
-      </Router>
+      <div className="App">
+          <header className="App-header">
+            <img src={farrappLogo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Boow</h1>
+          </header>
+          <Router>
+          {routeOptions}
+          </Router>
+        </div>      
     );
   }
 }

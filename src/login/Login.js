@@ -15,7 +15,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import EmailIcon from '@material-ui/icons/EmailOutlined'
-import apimock from './ApiMock'
+import apimock from '../ApiMock'
 import './Login.css';
 
 export class Login extends React.Component {

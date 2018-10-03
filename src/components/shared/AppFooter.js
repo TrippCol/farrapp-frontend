@@ -6,7 +6,7 @@ const { Footer } = Layout;
 class AppFooter extends Component {
   render() {
     return (
-      <Footer style={{ textAlign: "center" }}>
+      <Footer style={{ textAlign: "center", backgroundColor: "#111820" }}>
         <div>Farrapp</div>
         <br />
         <List grid={{ gutter: 16, column: 4 }}>

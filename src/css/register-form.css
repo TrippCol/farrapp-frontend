@@ -7,11 +7,12 @@
 }
 
 .ant-form-item-label label {
-  color: white;
+  color: white !important;
 }
 
 .register-form {
   max-width: 350px;
+  color: white;
 }
 .register-form-forgot {
   float: right;

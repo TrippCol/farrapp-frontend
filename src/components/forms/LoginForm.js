@@ -20,9 +20,11 @@ class LoginForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="login-container">
-        <div className="logo">
-          <ReactSVG src={logo} />
-        </div>
+        <a href="/">
+          <div className="logo">
+            <ReactSVG src={logo} />
+          </div>
+        </a>
         <Form
           onSubmit={this.handleSubmit}
           className="login-form"

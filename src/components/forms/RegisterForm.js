@@ -56,12 +56,14 @@ class RegisterForm extends Component {
     };
     return (
       <div className="register-container">
-        <div className="logo">
-          <ReactSVG src={logo} />
-        </div>
+        <a href="/">
+          <div className="logo">
+            <ReactSVG src={logo} />
+          </div>
+        </a>
         <Form
           onSubmit={this.handleSubmit}
-          className="login-form"
+          className="register-form"
           style={{ paddingTop: "50px" }}
         >
           <FormItem label="Nombre">
@@ -104,7 +106,15 @@ class RegisterForm extends Component {
                   validator: this.validateToNextPassword
                 }
               ]
-            })(<Input type="password" placeholder="Contraseña" />)}
+            })(
+              <Input
+                prefix={
+                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                }
+                type="password"
+                placeholder="Contraseña"
+              />
+            )}
           </FormItem>
           <FormItem label="Confirmar contraseña">
             {getFieldDecorator("confirm", {
@@ -119,6 +129,9 @@ class RegisterForm extends Component {
               ]
             })(
               <Input
+                prefix={
+                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                }
                 type="password"
                 placeholder="Confirmar contraseña"
                 onBlur={this.handleConfirmBlur}

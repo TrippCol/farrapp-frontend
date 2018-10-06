@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Login from "./views/Login";
+import Register from "./views/Register";
 import name from "../img/name.svg";
 import ReactSVG from "react-svg";
 import { Layout, Menu, Breadcrumb } from "antd";
@@ -11,7 +12,7 @@ import Landing from "./views/Landing";
 
 class App extends Component {
   render() {
-    return <Login />;
+    return <Register />;
   }
 
   /*render() {

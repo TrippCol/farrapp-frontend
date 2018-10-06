@@ -1,8 +1,7 @@
-.login {
+.register {
   margin: 0;
   padding: 0;
   width: 100%;
-  text-align: center;
   background: url(../img/login-back.jpg) no-repeat 50% 50%;
   background-size: cover;
   height: 85vh;

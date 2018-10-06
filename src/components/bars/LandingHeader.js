@@ -29,7 +29,7 @@ class LandingHeader extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static" style={{ "background-color": "black" }}>
+        <AppBar position="static" style={{ backgroundColor: "black" }}>
           <Toolbar>
             <a href="/">
               <img src={logo} alt="logo" width="150" />

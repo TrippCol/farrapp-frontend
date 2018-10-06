@@ -24,3 +24,10 @@ const client = axios.create({
       })
       .catch(error => console.log(error));
   }
+
+  export function add(user, party, callback) {
+    client.post("/registry",{user} ,{party}).then(function(){
+      callback.onSuccess();
+    })
+    .catch(error => console.log(error));
+  }

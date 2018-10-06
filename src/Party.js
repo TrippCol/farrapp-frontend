@@ -25,45 +25,35 @@ export class Party extends React.Component {
         
 
         return (
-            <Paper>
-                <th>
+            <tr>
+                
                     <td>{this.props.partyName}</td>
-                </th>
-                <th>
+                
                     <td>{this.props.description}</td>
-                </th>
-                <th>
+                
                     <td>{this.props.eventDate}</td>
-                </th>
-                <th>
+               
+               
                     <td>{this.props.eventHour}</td>
-                </th>
-                <th>
+                
+                
                     <td>{this.props.address}</td>
-                </th>
-                <th>
+                
                     <td>{this.props.place}</td>
-                </th>
-                <th>
+                
                     <td>{this.props.price}</td>
-                </th>
-                <th>
+                
                     <td>{this.props.optionalDescription}</td>
-                </th>
-                <th>
+                
                     <td>{this.props.typeOfMusic} </td>
-                </th>
-                <th>
+               
                     <td>{this.props.assistants}</td>
-                </th>
-                <th>
+                
                     <Button variant="fab" aria-label="Add" color="primary" size="small" onClick={this.handlePartyInscription}>
                     <h1>¡Ir!</h1>
                     </Button>
-                </th>
-                
                
-            </Paper>
+            </tr>
         );
     }
 

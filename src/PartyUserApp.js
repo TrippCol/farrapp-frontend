@@ -44,10 +44,8 @@ class PartyUserApp extends Component {
                 
                 <br/>
                 <br/>
-
-                <Card className="todo-form">
-
-                    <li className='onclick-menu'>
+                <Card>
+                <li className='onclick-menu'>
                         <details className="">
                             <summary>
                                 <AccountCircle />
@@ -67,6 +65,10 @@ class PartyUserApp extends Component {
                             </details-menu>
                         </details>
                     </li>
+                </Card>
+                <Card className="todo-form">
+
+                    
 
                     
                     <CardContent style={{justifyContent: 'center'}}>

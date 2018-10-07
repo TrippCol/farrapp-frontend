@@ -26,9 +26,6 @@ class Landing extends Component {
           <div className="features">¿Que Ofrecemos?</div>
         </Row>
         <Row>
-          <div className="who">¿Quienes Somos?</div>
-        </Row>
-        <Row>
           <AppFooter />
         </Row>
       </div>

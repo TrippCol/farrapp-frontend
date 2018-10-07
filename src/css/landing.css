@@ -15,7 +15,7 @@
 
 .info-h2 {
   box-sizing: border-box;
-  color: rgb(255, 255, 255);
+  color: white;
   display: block;
   font-family: "Open sans", Helvetica, sans-serif;
   font-size: 21.75px;
@@ -38,8 +38,5 @@
 
 .features {
   height: 400px;
-}
-
-.who {
-  height: 400px;
+  background-color: rgba(28, 28, 22, 1);
 }

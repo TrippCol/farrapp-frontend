@@ -1,0 +1,42 @@
+.info {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  background: url(../img/info.jpg) no-repeat 50% 50%;
+  background-size: cover;
+  height: 85vh;
+  display: table;
+}
+
+.info-col {
+  margin: 2%;
+}
+
+.info-h2 {
+  box-sizing: border-box;
+  color: white;
+  display: block;
+  font-family: "Open sans", Helvetica, sans-serif;
+  font-size: 21.75px;
+  font-weight: 100;
+  height: 215px;
+  letter-spacing: 1.0875px;
+  line-height: 43.5px;
+  margin-block-end: 20.648px;
+  margin-block-start: 25.81px;
+  margin-bottom: 20.648px;
+  margin-inline-end: 0px;
+  margin-inline-start: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 25.81px;
+  text-size-adjust: 100%;
+  text-transform: uppercase;
+  width: 401.922px;
+}
+
+.features {
+  height: 400px;
+  background-color: rgba(28, 28, 22, 1);
+}

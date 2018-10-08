@@ -1,0 +1,23 @@
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.logo {
+  font-family: "Courgette", cursive;
+  text-align: center;
+  font-size: 30px;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  float: center;
+  display: block;
+  height: 32px;
+  padding: 0;
+  position: relative;
+  max-width: 207px;
+  margin: 0 auto;
+  width: 80%;
+  color: white;
+}

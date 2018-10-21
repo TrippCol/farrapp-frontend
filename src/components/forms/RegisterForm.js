@@ -5,20 +5,31 @@ import Recaptcha from "react-recaptcha";
 import "../../css/register-form.css";
 import logo from "../../img/logo.svg";
 
+import ApiMock from "../../api/ApiMock";
+
 const FormItem = Form.Item;
 
 class RegisterForm extends Component {
-  state = {};
+  state = { verified: false };
 
-  verifyCaptcha = () => {};
+  verifyCaptcha = () => {
+    this.setState({ verified: true });
+    console.log("verified!!!");
+  };
 
   onLoadCaptcha = () => {};
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      if (!err) {
+      if (!err && this.state.verified) {
         console.log("Received values of form: ", values);
+        const user = {
+          email: values.mail,
+          name: values.userName,
+          password: values.password
+        };
+        ApiMock.addNewUser(user);
       }
     });
   };
@@ -81,7 +92,7 @@ class RegisterForm extends Component {
             )}
           </FormItem>
           <FormItem label="Correo electrónico">
-            {getFieldDecorator("Mail", {
+            {getFieldDecorator("mail", {
               rules: [
                 { type: "email", message: "No escribiste un correo valido!" },
                 { required: true, message: "Por favor escribe tu correo!" }

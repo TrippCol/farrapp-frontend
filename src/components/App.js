@@ -16,6 +16,8 @@ import PartyPublisherApp from "../PartyPublisherApp";
 import { ProfileForm } from "../ProfileForm";
 import { Summary } from "../Summary";
 import AppHeader from "./bars/AppHeader";
+import SiderUserBar from "./bars/SiderUserBar";
+import AppUser from "./views/AppUser";
 
 class App extends Component {
   PartyView = () => <PartyUserApp />;
@@ -42,7 +44,7 @@ class App extends Component {
           <Route exact path="/admin" component={this.PublisherView} />
           <Route exact path="/settings" component={this.ProfileConfView} />
           <Route exact path="/" component={this.PartyView} />
-          <Route exact path="/test" component={AppHeader} />
+          <Route exact path="/test" component={AppUser} />
           <Redirect to="/" />
         </Switch>
       );

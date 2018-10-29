@@ -1,0 +1,14 @@
+.container-summary {
+  display: grid;
+  background-color: rgba(28, 28, 22, 1);
+  width: auto;
+  height: auto;
+  padding: 0 24px 24px;
+}
+
+.container-summary > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}

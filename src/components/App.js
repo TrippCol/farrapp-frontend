@@ -18,6 +18,7 @@ import { Summary } from "../Summary";
 import AppHeader from "./bars/AppHeader";
 import SiderUserBar from "./bars/SiderUserBar";
 import AppUser from "./views/AppUser";
+import PartySummary from "./party/PartySummary";
 
 class App extends Component {
   PartyView = () => <PartyUserApp />;
@@ -45,6 +46,7 @@ class App extends Component {
           <Route exact path="/settings" component={this.ProfileConfView} />
           <Route exact path="/" component={this.PartyView} />
           <Route exact path="/test" component={AppUser} />
+          {/* <Route exact path="/card" component={PartySummary} /> */}
           <Redirect to="/" />
         </Switch>
       );

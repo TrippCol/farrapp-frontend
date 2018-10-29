@@ -32,10 +32,37 @@ const mockedParties = [
     place: "Escuela Colombiana De Ingeniería Julio Garavito",
     eventDate: "31-10-2018",
     eventHour: "20:00",
+    optionalDescription: "Fiesta de rave",
+    price: 2000,
+    typeOfMusic: "Mix 90's",
+    assistants: [],
+    likes: 5
+  },
+  {
+    partyName: "Armando",
+    description: "Fiesta de Halloween",
+    address: "AK 45 (Autonorte) #205-59, Bogotá, Cundinamarca",
+    place: "Escuela Colombiana De Ingeniería Julio Garavito",
+    eventDate: "31-10-2018",
+    eventHour: "20:00",
     optionalDescription: "Fiesta de disfraces",
     price: 2000,
     typeOfMusic: "Mix 90's",
-    assistants: []
+    assistants: [],
+    likes: 7
+  },
+  {
+    partyName: "Juarez",
+    description: "Fiesta Mexicana",
+    address: "AK 45 (Autonorte) #205-59, Bogotá, Cundinamarca",
+    place: "Escuela Colombiana De Ingeniería Julio Garavito",
+    eventDate: "31-10-2018",
+    eventHour: "20:00",
+    optionalDescription: "Fiesta Mexicana",
+    price: 2000,
+    typeOfMusic: "Mix 90's",
+    assistants: [],
+    likes: 8
   }
 ];
 
@@ -106,8 +133,8 @@ class ApiMock {
     });
   }
 
-  static getParties(callback) {
-    callback({ data: mockedParties });
+  static getParties() {
+    return mockedParties;
   }
 
   static addNewParty(

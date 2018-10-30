@@ -63,6 +63,19 @@ const mockedParties = [
     typeOfMusic: "Mix 90's",
     assistants: [],
     likes: 8
+  },
+  {
+    partyName: "Juarez",
+    description: "Fiesta Mexicana",
+    address: "AK 45 (Autonorte) #205-59, Bogotá, Cundinamarca",
+    place: "Escuela Colombiana De Ingeniería Julio Garavito",
+    eventDate: "31-10-2018",
+    eventHour: "20:00",
+    optionalDescription: "Fiesta Mexicana",
+    price: 2000,
+    typeOfMusic: "Mix 90's",
+    assistants: [],
+    likes: 8
   }
 ];
 

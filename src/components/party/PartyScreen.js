@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ApiMock from "../../api/ApiMock";
 import PartySummary from "./PartySummary";
 import Party from "./Party";
-import { Layout } from "antd";
+import { Layout, List } from "antd";
 
 import "../../css/app-body.css";
 import "../../css/app-party.css";
@@ -36,7 +36,13 @@ class PartyScreen extends Component {
       return <Layout className="container-party">{this.renderParty()}</Layout>;
     } else {
       return (
-        <Layout className="container-summary">{this.renderSummary()}</Layout>
+        <Layout className="container-summary">
+          <List
+            grid={{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3 }}
+            dataSource={this.renderSummary()}
+            renderItem={item => <List.Item>{item}</List.Item>}
+          />
+        </Layout>
       );
     }
   }

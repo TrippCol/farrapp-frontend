@@ -115,6 +115,8 @@ class AppHeader extends React.Component {
 
   handleSignout = () => {
     console.log("signout!");
+    localStorage.clear();
+    window.location.assign("/");
   };
 
   render() {

@@ -7,19 +7,6 @@ import ReactSVG from "react-svg";
 const FormItem = Form.Item;
 
 class LoginForm extends Component {
-  /*handleLogin = () => {
-    let self = this;
-    ApiMock.enterLogin(this.state.email, this.state.password,
-        function (response) {
-            localStorage.setItem("token", response.data.accessToken);
-            localStorage.setItem("isLoggedIn", true);
-        });
-    ApiMock.getUserByEmail(this.state.email,
-        function(response){
-            localStorage.setItem("profileInfo", JSON.stringify(response.data));
-        });
-  };*/
-
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -32,6 +19,7 @@ class LoginForm extends Component {
         ApiMock.getUserByEmail(values.mail, function(response) {
           localStorage.setItem("profileInfo", JSON.stringify(response.data));
         });
+        window.location.assign("/");
       }
     });
   };

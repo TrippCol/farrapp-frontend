@@ -111,8 +111,6 @@ class LoginForm extends Component {
             <a href="/register">Registrate!</a>
           </FormItem>
         </Form>
-        <Button
-        onClick={this.handleSubmit}/>
       </div>
     );
   }

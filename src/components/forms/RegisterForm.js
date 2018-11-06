@@ -4,7 +4,7 @@ import ReactSVG from "react-svg";
 import Recaptcha from "react-recaptcha";
 import "../../css/register-form.css";
 import logo from "../../img/logo.svg";
-
+import {addNewUser} from "../../api/RestController"
 import ApiMock from "../../api/ApiMock";
 
 const FormItem = Form.Item;
@@ -20,6 +20,7 @@ class RegisterForm extends Component {
   onLoadCaptcha = () => {};
 
   handleSubmit = e => {
+    var self = this;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err && this.state.verified) {
@@ -29,9 +30,23 @@ class RegisterForm extends Component {
           name: values.userName,
           password: values.password
         };
-        ApiMock.addNewUser(user);
+        //ApiMock.addNewUser(user);
+        self.addUser(user);
       }
     });
+  };
+
+  addUser = (user) => {
+    var callback = {
+      onSuccess: function(response){
+        console.log(response);
+      },
+      onFailed: function(error){
+        console.log(error);
+      }
+    };
+    addNewUser(user, callback);
+
   };
 
   compareToFirstPassword = (rule, value, callback) => {

@@ -100,7 +100,7 @@ class LoginForm extends Component {
           <FormItem>
             <Button
               type="primary"
-              htmlType="primary"
+              htmlType="submit"
               className="login-form-button"
             >
               Entrar

@@ -5,7 +5,6 @@ import Recaptcha from "react-recaptcha";
 import "../../css/register-form.css";
 import logo from "../../img/logo.svg";
 import {addNewUser} from "../../api/RestController"
-import ApiMock from "../../api/ApiMock";
 
 const FormItem = Form.Item;
 

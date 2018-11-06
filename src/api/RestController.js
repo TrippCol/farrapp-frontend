@@ -67,5 +67,13 @@ export function getUser(email, callback) {
 
 
 //PARTIES
-
+export function getPartyList(callback) {
+  axios.get(apiUrl + '/parties/parties')
+      .then(function (response) {
+          callback.onSuccess(response);
+      })
+      .catch(function (error) {
+          callback.onFailed(error);
+      })
+};
 

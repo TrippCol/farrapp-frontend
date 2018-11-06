@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import ApiMock from "../../api/ApiMock";
+//import ApiMock from "../../api/ApiMock";
 import PartySummary from "./PartySummary";
 import Party from "./Party";
 import { Layout, List } from "antd";
-
+import { getPartyList } from "../../api/RestController";
 import "../../css/app-body.css";
 import "../../css/app-party.css";
 
@@ -15,7 +15,8 @@ class PartyScreen extends Component {
   };
 
   renderSummary = () => {
-    const parties = ApiMock.getParties();
+    
+    const parties = this.setParties();
     return parties.map(prt => {
       return (
         <PartySummary
@@ -25,6 +26,20 @@ class PartyScreen extends Component {
         />
       );
     });
+  };
+
+  setParties = () => {
+    var callback = {
+      onSuccess: function(response){
+        return response.data;
+      },
+      onFailed: function(error){
+        console.log(error);
+        return undefined;
+      }
+    };
+
+    getPartyList(callback);
   };
 
   renderParty = () => {

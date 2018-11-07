@@ -1,29 +1,58 @@
 import React, { Component } from "react";
 import { Form, Icon, Input, Button } from "antd";
 import "../../css/login-form.css";
-import ApiMock from "../../api/ApiMock";
 import logo from "../../img/logo.svg";
 import ReactSVG from "react-svg";
+import {login, getUser} from "../../api/RestController"
 const FormItem = Form.Item;
 
 class LoginForm extends Component {
   handleSubmit = e => {
+    var self = this;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
-        ApiMock.enterLogin(values.mail, values.password, function(response) {
-          localStorage.setItem("token", response.data.accessToken);
-          localStorage.setItem("isLoggedIn", true);
-        });
-        ApiMock.getUserByEmail(values.mail, function(response) {
-          localStorage.setItem("profileInfo", JSON.stringify(response.data));
-        });
-        window.location.assign("/");
+        self.enterLogin(
+          {
+            email: values.mail,
+            password: values.password
+          });
+        
       }
     });
   };
 
+  enterLogin = (user) => {
+    var self = this;
+    var callback = {
+      onSuccess: function(response){
+        localStorage.setItem("token", response.data.accessToken);
+        localStorage.setItem("isLoggedIn", true);
+        self.getProfileInfo(encodeURI(user.email));
+      },
+      onFailed: function(error){
+        console.log(error);
+      }
+    };
+
+    login(user, callback)
+  };
+
+
+  getProfileInfo = (email) => {
+    var callback = {
+      onSuccess: function(response){
+        localStorage.setItem("profileInfo", JSON.stringify(response.data));
+        window.location.assign("/");
+      },
+      onFailed: function(error){
+        console.log(error);
+      }
+    };
+
+    getUser(email, callback)
+  };
   render() {
     const { getFieldDecorator } = this.props.form;
     return (

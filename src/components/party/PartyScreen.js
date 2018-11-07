@@ -1,22 +1,32 @@
 import React, { Component } from "react";
-import ApiMock from "../../api/ApiMock";
+//import ApiMock from "../../api/ApiMock";
 import PartySummary from "./PartySummary";
 import Party from "./Party";
 import { Layout, List } from "antd";
-
 import "../../css/app-body.css";
 import "../../css/app-party.css";
+import axios from "axios";
 
 class PartyScreen extends Component {
-  state = { focusParty: false, party: {} };
+  state = { focusParty: false, party: {} ,foundParties:{}};
+
+  componentDidMount(){
+    var self = this;
+    axios.get("https://farrapp-api.herokuapp.com/parties")
+    .then(function(response){
+      self.setState({foundParties: response.data});
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+  }
 
   handleFocusParty = prty => {
-    this.setState({ focusParty: true, party: prty });
+    this.setState({ focusParty: true, party: prty , parties:null});
   };
 
   renderSummary = () => {
-    const parties = ApiMock.getParties();
-    return parties.map(prt => {
+    return Object.values(this.state.foundParties).map(prt => {
       return (
         <PartySummary
           key={prt.partyName}
@@ -26,6 +36,7 @@ class PartyScreen extends Component {
       );
     });
   };
+
 
   renderParty = () => {
     return <Party party={this.state.party} />;

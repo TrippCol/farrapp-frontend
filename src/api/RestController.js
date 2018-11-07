@@ -68,7 +68,7 @@ export function getUser(email, callback) {
 
 //PARTIES
 export function getPartyList(callback) {
-  axios.get(apiUrl + '/parties/parties')
+  axios.get(apiUrl + '/parties')
       .then(function (response) {
           callback.onSuccess(response);
       })

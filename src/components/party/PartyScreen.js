@@ -6,29 +6,58 @@ import { Layout, List } from "antd";
 import { getPartyList } from "../../api/RestController";
 import "../../css/app-body.css";
 import "../../css/app-party.css";
+import axios from "axios";
 
 class PartyScreen extends Component {
   state = { focusParty: false, party: {} };
 
   handleFocusParty = prty => {
-    this.setState({ focusParty: true, party: prty });
+    this.setState({ focusParty: true, party: prty , parties:null});
   };
 
-  renderSummary = () => {
-    
-    const parties = this.setParties();
-    return parties.map(prt => {
+  renderSummary = async () => {
+    var self = this;
+    //try{
+      const response = await axios.get("https://farrapp-api.herokuapp.com/parties");
+      return Object.values(response.data).map(prt => {
+        return (
+          <PartySummary
+            key={prt.partyName}
+            party={prt}
+            focusHandler={self.handleFocusParty}
+          />
+        );
+      });
+    //}catch(error){
+      //console.error(error);
+    //}
+    //return undefined;
+    /*axios.get("https://farrapp-api.herokuapp.com/parties")
+      .then(function (response) {
+        var parties = response.data;
+        var data = (self.renderAll(parties));
+        self.setState({parties:data});
+      })
+      .catch(function (error) {
+        console.log(error);
+        data = undefined;
+      });*/
+  };
+
+  renderAll = (parties) => {
+    var self = this;
+    return Object.values(parties).map(prt => {
       return (
         <PartySummary
           key={prt.partyName}
           party={prt}
-          focusHandler={this.handleFocusParty}
+          focusHandler={self.handleFocusParty}
         />
       );
     });
   };
 
-  setParties = () => {
+  /*setParties = () => {
     var callback = {
       onSuccess: function(response){
         return response.data;
@@ -40,7 +69,7 @@ class PartyScreen extends Component {
     };
 
     getPartyList(callback);
-  };
+  };*/
 
   renderParty = () => {
     return <Party party={this.state.party} />;
@@ -50,6 +79,7 @@ class PartyScreen extends Component {
     if (this.state.focusParty) {
       return <Layout className="container-party">{this.renderParty()}</Layout>;
     } else {
+      console.log(this.renderSummary());
       return (
         <Layout className="container-summary">
           <List

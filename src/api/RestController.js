@@ -25,6 +25,7 @@ export function addNewUser(user, callback) {
 };
 
 export function modifyUserInfo(email, user, callback) {
+    console.log(email);
   axios.put(apiUrl + '/users/user-info/' + email, user)
       .then(function (response) {
           callback.onSuccess(response);

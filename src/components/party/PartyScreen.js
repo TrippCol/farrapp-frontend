@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import PartySummary from "./PartySummary";
 import Party from "./Party";
 import { Layout, List } from "antd";
-import { getPartyList } from "../../api/RestController";
 import "../../css/app-body.css";
 import "../../css/app-party.css";
 import axios from "axios";

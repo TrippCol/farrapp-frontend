@@ -5,7 +5,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
-import ApiMock from "./api/ApiMock";
+import { modifyUserInfo, modifyUserPassword } from "./api/RestController";
 export class ProfileForm extends Component {
   profile = JSON.parse(localStorage.getItem("profileInfo"));
 
@@ -77,31 +77,53 @@ export class ProfileForm extends Component {
   };
 
   handleUpdateInfo = () => {
-    console.log(this.state.name);
-    ApiMock.modifyUserInfo(
-      this.profile.email,
-      this.state.name,
-      this.state.lastName,
-      this.state.id,
-      this.state.email,
-      function() {
-        console.log("YA SE MODIFICO EL USUARIO");
+    var self = this;
+    var callback = {
+      onSuccess: function (response) {
+        localStorage.setItem("profileInfo", JSON.stringify({
+          name: self.state.name,
+          email: self.state.email,
+          id: self.state.id,
+          lastName: self.state.lastName,
+          password: self.profile.password
+        }));
+        window.location.assign("/");
+      },
+      onFailed: function (error) {
+        console.log(error);
       }
-    );
+    };
+    var user = {
+      email: this.state.email,
+      name: this.state.name,
+      lastName: this.state.lastName,
+      id: this.state.id
+    };
+    modifyUserInfo(encodeURIComponent(this.profile.email), user, callback);
   };
 
   handleUpdatePassword = () => {
+    var self = this;
     if (
       this.state.oldPassword === this.profile.password &&
       this.state.newPasswordOne === this.state.newPasswordTwo
     ) {
-      ApiMock.modifyUserPassword(
-        this.state.newPasswordOne,
-        JSON.parse(localStorage.getItem("profileInfo")).email,
-        function() {
-          console.log("YA SE MODIFICO LA CONTRASEÑA");
+      var callback = {
+
+        onSuccess: function (response) {
+          var newUser = JSON.parse(localStorage.getItem("profileInfo"));
+          newUser["password"] = self.state.newPasswordOne;
+          localStorage.setItem("profileInfo", JSON.stringify(newUser));
+          window.location.assign("/");
+        },
+        onFailed: function (error) {
+          console.log(error);
         }
-      );
+      };
+      var user = {
+        password: this.state.newPasswordOne
+      };
+      modifyUserPassword(encodeURIComponent(this.profile.email), user, callback)
     }
   };
 
@@ -194,7 +216,7 @@ export class ProfileForm extends Component {
                   className="submit"
                   onClick={this.handleUpdateInfo}
                   disabled={this.isUpdateButtonDisabled()}
-                  href="/"
+
                 >
                   Update
                 </Button>
@@ -251,7 +273,6 @@ export class ProfileForm extends Component {
                   variant="raised"
                   color="primary"
                   className="submit"
-                  href="/"
                   onClick={this.handleUpdatePassword}
                 >
                   Save

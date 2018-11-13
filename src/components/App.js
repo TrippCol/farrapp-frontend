@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Landing from "./views/Landing";
 import Register from "./views/Register";
 import Login from "./views/Login";
+import ProfileView from "./views/ProfileView";
 import {
   BrowserRouter as Router,
   Route,
@@ -27,7 +28,7 @@ class App extends Component {
       routeOptions = (
         <Switch>
           <Route exact path="/admin" component={this.PublisherView} />
-          <Route exact path="/settings" component={this.ProfileConfView} />
+          <Route exact path="/settings" component={ProfileView} />
           <Route exact path="/" component={AppUser} />
           <Redirect to="/" />
         </Switch>

@@ -1,0 +1,22 @@
+.party-container {
+  background-color: rgba(28, 28, 22, 1);
+  padding: 15px 30px;
+  border-radius: 5px;
+  max-width: 1000px;
+  color: white;
+}
+
+.ant-form-item-label label {
+  color: white !important;
+}
+
+.party-form {
+  max-width: 500px;
+  color: white;
+}
+.register-form-forgot {
+  float: right;
+}
+.register-form-button {
+  width: 100%;
+}

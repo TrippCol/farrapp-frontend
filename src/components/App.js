@@ -12,6 +12,7 @@ import {
 import "antd/dist/antd.css";
 import { ProfileForm } from "../ProfileForm";
 import AppUser from "./views/AppUser";
+import CreatorApp from "./views/CreatorApp";
 
 class App extends Component {
   landing = () => <Landing />;
@@ -27,7 +28,7 @@ class App extends Component {
     if (localStorage.getItem("isLoggedIn")) {
       routeOptions = (
         <Switch>
-          <Route exact path="/admin" component={this.PublisherView} />
+          <Route exact path="/admin" component={CreatorApp} />
           <Route exact path="/settings" component={ProfileView} />
           <Route exact path="/" component={AppUser} />
           <Redirect to="/" />

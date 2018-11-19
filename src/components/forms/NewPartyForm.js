@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Icon, Input, Button } from "antd";
+import { Form, Icon, Input, Button, Tooltip } from "antd";
 import "../../css/new-party-form.css";
 import {} from "../../api/RestController";
 const FormItem = Form.Item;
@@ -8,51 +8,165 @@ class NewPartyForm extends Component {
   state = {};
   render() {
     const { getFieldDecorator } = this.props.form;
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 8 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 }
+      }
+    };
     return (
       <div className="party-container">
-        <Form
-          onSubmit={this.handleSubmit}
-          className="party-form"
-          style={{ paddingTop: "50px" }}
-        >
-          <FormItem>
-            {getFieldDecorator("mail", {
+        <Form onSubmit={this.handleSubmit} className="party-form">
+          <FormItem
+            {...formItemLayout}
+            label={
+              <span>
+                Nickname&nbsp;
+                <Tooltip title="What do you want others to call you?">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            }
+          >
+            {getFieldDecorator("nickname", {
               rules: [
-                { type: "email", message: "No escribiste un correo valido!" },
-                { required: true, message: "Por favor escribe tu correo!" }
-              ]
-            })(
-              <Input
-                prefix={
-                  <Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />
+                {
+                  required: true,
+                  message: "Please input your nickname!",
+                  whitespace: true
                 }
-                placeholder="Correo electrónico"
-              />
-            )}
+              ]
+            })(<Input />)}
           </FormItem>
-          <FormItem>
-            {getFieldDecorator("password", {
+          <FormItem
+            {...formItemLayout}
+            label={
+              <span>
+                Nickname&nbsp;
+                <Tooltip title="What do you want others to call you?">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            }
+          >
+            {getFieldDecorator("nickname", {
               rules: [
-                { required: true, message: "Por favor escribe tu contraseña!" }
-              ]
-            })(
-              <Input
-                prefix={
-                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                {
+                  required: true,
+                  message: "Please input your nickname!",
+                  whitespace: true
                 }
-                type="password"
-                placeholder="Contraseña"
-              />
-            )}
+              ]
+            })(<Input />)}
           </FormItem>
-          <FormItem>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form-button"
-            >
-              Crear
-            </Button>
+          <FormItem
+            {...formItemLayout}
+            label={
+              <span>
+                Nickname&nbsp;
+                <Tooltip title="What do you want others to call you?">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            }
+          >
+            {getFieldDecorator("nickname", {
+              rules: [
+                {
+                  required: true,
+                  message: "Please input your nickname!",
+                  whitespace: true
+                }
+              ]
+            })(<Input />)}
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={
+              <span>
+                Nickname&nbsp;
+                <Tooltip title="What do you want others to call you?">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            }
+          >
+            {getFieldDecorator("nickname", {
+              rules: [
+                {
+                  required: true,
+                  message: "Please input your nickname!",
+                  whitespace: true
+                }
+              ]
+            })(<Input />)}
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={
+              <span>
+                Nickname&nbsp;
+                <Tooltip title="What do you want others to call you?">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            }
+          >
+            {getFieldDecorator("nickname", {
+              rules: [
+                {
+                  required: true,
+                  message: "Please input your nickname!",
+                  whitespace: true
+                }
+              ]
+            })(<Input />)}
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={
+              <span>
+                Nickname&nbsp;
+                <Tooltip title="What do you want others to call you?">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            }
+          >
+            {getFieldDecorator("nickname", {
+              rules: [
+                {
+                  required: true,
+                  message: "Please input your nickname!",
+                  whitespace: true
+                }
+              ]
+            })(<Input />)}
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={
+              <span>
+                Nickname&nbsp;
+                <Tooltip title="What do you want others to call you?">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            }
+          >
+            {getFieldDecorator("nickname", {
+              rules: [
+                {
+                  required: true,
+                  message: "Please input your nickname!",
+                  whitespace: true
+                }
+              ]
+            })(<Input />)}
           </FormItem>
         </Form>
       </div>

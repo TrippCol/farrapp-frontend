@@ -5,7 +5,8 @@ mockedUsers["juan.ramirez-me@mail.escuelaing.edu.co"] = {
   lastName: "Ramirez Mendoza",
   id: "1019139950",
   email: "juan.ramirez-me@mail.escuelaing.edu.co",
-  password: "qwerty1"
+  password: "qwerty1",
+  type: "Admin"
 };
 
 mockedUsers["kevin.mendieta@mail.escuelaing.edu.co"] = {

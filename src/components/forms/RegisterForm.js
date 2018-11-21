@@ -4,7 +4,7 @@ import ReactSVG from "react-svg";
 import Recaptcha from "react-recaptcha";
 import "../../css/register-form.css";
 import logo from "../../img/logo.svg";
-import {addNewUser} from "../../api/RestController"
+import { addNewUser } from "../../api/RestController";
 
 const FormItem = Form.Item;
 
@@ -35,17 +35,16 @@ class RegisterForm extends Component {
     });
   };
 
-  addUser = (user) => {
+  addUser = user => {
     var callback = {
-      onSuccess: function(response){
+      onSuccess: function(response) {
         console.log(response);
       },
-      onFailed: function(error){
+      onFailed: function(error) {
         console.log(error);
       }
     };
     addNewUser(user, callback);
-
   };
 
   compareToFirstPassword = (rule, value, callback) => {

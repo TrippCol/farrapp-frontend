@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Landing from "./views/Landing";
 import Register from "./views/Register";
 import Login from "./views/Login";
+import ProfileView from "./views/ProfileView";
 import {
   BrowserRouter as Router,
   Route,
@@ -11,6 +12,7 @@ import {
 import "antd/dist/antd.css";
 import { ProfileForm } from "../ProfileForm";
 import AppUser from "./views/AppUser";
+import CreatorApp from "./views/CreatorApp";
 
 class App extends Component {
   landing = () => <Landing />;
@@ -23,16 +25,23 @@ class App extends Component {
 
   render() {
     let routeOptions;
-    if (localStorage.getItem("isLoggedIn")) {
+    if (localStorage.getItem("isLoggedIn") && JSON.parse(localStorage.profileInfo).type === "User") {
       routeOptions = (
         <Switch>
-          <Route exact path="/admin" component={this.PublisherView} />
-          <Route exact path="/settings" component={this.ProfileConfView} />
+          <Route exact path="/settings" component={ProfileView} />
           <Route exact path="/" component={AppUser} />
           <Redirect to="/" />
         </Switch>
       );
-    } else {
+    } else if(localStorage.getItem("isLoggedIn") && JSON.parse(localStorage.profileInfo).type === "Admin"){
+      routeOptions = (
+        <Switch>
+          <Route exact path="/settings" component={ProfileView} />
+          <Route exact path="/" component={CreatorApp} />
+          <Redirect to="/" />
+        </Switch>
+      );
+    }else {
       routeOptions = (
         <Switch>
           <Route exact path="/" component={Landing} />

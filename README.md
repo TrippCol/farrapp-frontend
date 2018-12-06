@@ -1,6 +1,6 @@
 # Farrapp FrontEnd
 
-Front end for farrapp using React Framework
+Front end for farrapp using React
 
 ## State
 
@@ -25,6 +25,10 @@ You will need to install:
 #### Yarn
 
 - [Yarn](https://yarnpkg.com/en/docs/install)
+
+  ```bash
+  npm install -g yarn
+  ```
 
 ### Set up project
 

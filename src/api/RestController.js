@@ -92,3 +92,14 @@ export function addUserToParty(partyId, user, callback) {
       callback.onFailed(error);
     });
 }
+
+export function addParty(party, callback) {
+  axios
+    .post(apiUrl + "/parties", party)
+    .then(function(response) {
+      callback.onSuccess(response);
+    })
+    .catch(function(error) {
+      callback.onFailed(error);
+    });
+}

@@ -18,11 +18,11 @@ class SiderUserBar extends Component {
             backgroundColor: "black"
           }}
         >
-          <Menu.Item key="1">
+          <Menu.Item key="1" onClick={this.props.clickHome}>
             <Icon type="home" />
             <span>Home</span>
           </Menu.Item>
-          <Menu.Item key="2">
+          <Menu.Item key="2" onClick={this.props.clickMyParties}>
             <Icon type="heart" />
             <span>Mis Fiestas</span>
           </Menu.Item>

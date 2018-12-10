@@ -6,14 +6,26 @@ import PartyScreen from "../party/PartyScreen";
 import { Layout } from "antd";
 
 class AppUser extends Component {
-  state = {};
+  state = { siderOption: "1" };
+
+  clickHome = e => {
+    this.setState({ siderOption: "1" });
+  };
+
+  clickMyParties = e => {
+    this.setState({ siderOption: "2" });
+  };
+
   render() {
     return (
       <Layout>
         <AppHeader />
         <Layout>
-          <SiderUserBar />
-          <PartyScreen />
+          <SiderUserBar
+            clickHome={this.clickHome}
+            clickMyParties={this.clickMyParties}
+          />
+          <PartyScreen option={this.state.siderOption} />
         </Layout>
         <AppFooter />
       </Layout>

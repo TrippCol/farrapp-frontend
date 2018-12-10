@@ -81,3 +81,14 @@ export function getPartyList(callback) {
       callback.onFailed(error);
     });
 }
+
+export function addUserToParty(partyId, user, callback) {
+  axios
+    .post(apiUrl + "/parties/party/" + partyId, user)
+    .then(function(response) {
+      callback.onSuccess(response);
+    })
+    .catch(function(error) {
+      callback.onFailed(error);
+    });
+}

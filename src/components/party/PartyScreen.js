@@ -8,25 +8,26 @@ import "../../css/app-party.css";
 import axios from "axios";
 
 class PartyScreen extends Component {
-  state = { focusParty: false, party: {} ,foundParties:{}};
+  state = { focusParty: false, party: {}, foundParties: {} };
 
-  componentDidMount(){
+  componentDidMount() {
     var self = this;
-    axios.get("https://farrapp-api.herokuapp.com/parties")
-    .then(function(response){
-      self.setState({foundParties: response.data});
-    })
-    .catch(function(error){
-      console.log(error);
-    })
+    axios
+      .get("https://farrapp-api.herokuapp.com/parties")
+      .then(function(response) {
+        self.setState({ foundParties: response.data });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   handleFocusParty = prty => {
-    this.setState({ focusParty: true, party: prty , parties:null});
+    this.setState({ focusParty: true, party: prty, parties: null });
   };
 
-  renderSummary = () => {
-    return Object.values(this.state.foundParties).map(prt => {
+  renderSummary = partyList => {
+    return Object.values(partyList).map(prt => {
       return (
         <PartySummary
           key={prt.partyName}
@@ -36,7 +37,6 @@ class PartyScreen extends Component {
       );
     });
   };
-
 
   renderParty = () => {
     return <Party party={this.state.party} />;
@@ -50,7 +50,13 @@ class PartyScreen extends Component {
         <Layout className="container-summary">
           <List
             grid={{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3 }}
-            dataSource={this.renderSummary()}
+            dataSource={
+              this.props.option === "1"
+                ? this.renderSummary(this.state.foundParties)
+                : this.renderSummary(
+                    JSON.parse(localStorage.getItem("profileInfo")).myParties
+                  )
+            }
             renderItem={item => <List.Item>{item}</List.Item>}
           />
         </Layout>

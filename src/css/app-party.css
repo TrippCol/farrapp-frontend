@@ -15,9 +15,48 @@
 }
 
 .title {
-  color: white;
+  color: #fe4234;
+  font-size: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.place {
+  font-size: 21px;
+}
+
+.date {
+  font-size: 21px;
+}
+
+.time {
+  font-size: 21px;
+}
+
+.creator {
+  font-size: 21px;
 }
 
 .description {
-  color: white;
+  font-size: 21px;
+}
+
+.dress {
+  font-size: 21px;
+}
+
+.people {
+  font-size: 21px;
+}
+
+.menu {
+  font-size: 21px;
+}
+
+.cover {
+  font-size: 21px;
+}
+
+.tags {
+  font-size: 21px;
 }

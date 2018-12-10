@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Form, Input, Button, TimePicker, DatePicker } from "antd";
 import "../../css/new-party-form.css";
-import {} from "../../api/RestController";
+import { addParty } from "../../api/RestController";
+
 const FormItem = Form.Item;
 
 class NewPartyForm extends Component {
@@ -22,9 +23,21 @@ class NewPartyForm extends Component {
           price: values.cover,
           optionalDescription: "",
           assistants: [],
-          categories: []
+          categories: [],
+          cartaDeProductos: [],
+          minAge: 18,
+          dressCode: ""
         };
         console.log(party);
+        var callback = {
+          onSuccess: function(response) {
+            console.log(response);
+          },
+          onFailed: function(error) {
+            console.log(error);
+          }
+        };
+        addParty(party, callback);
       }
     });
   };
